@@ -64,7 +64,6 @@
     "overrides": {
       "eslint": "$eslint",
       "use-sync-external-store": "1.2.2",
-      "@tanstack/history": "workspace:*",
       "@tanstack/react-router": "workspace:*",
       "@tanstack/router-devtools": "workspace:*",
       "@tanstack/router-generator": "workspace:*",
