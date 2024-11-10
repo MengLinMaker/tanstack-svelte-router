@@ -64,19 +64,12 @@
     "overrides": {
       "eslint": "$eslint",
       "use-sync-external-store": "1.2.2",
-      "@tanstack/history": "workspace:*",
       "@tanstack/react-cross-context": "workspace:*",
       "@tanstack/react-router": "workspace:*",
       "@tanstack/router-devtools": "workspace:*",
       "@tanstack/router-generator": "workspace:*",
       "@tanstack/virtual-file-routes": "workspace:*",
       "@tanstack/router-plugin": "workspace:*",
-      "@tanstack/router-vite-plugin": "workspace:*",
-      "@tanstack/react-router-with-query": "workspace:*",
-      "@tanstack/router-zod-adapter": "workspace:*",
-      "@tanstack/router-valibot-adapter": "workspace:*",
-      "@tanstack/router-arktype-adapter": "workspace:*",
-      "@tanstack/eslint-plugin-router": "workspace:*",
       "temp-react": "0.0.0-experimental-035a41c4e-20230704",
       "temp-react-dom": "0.0.0-experimental-035a41c4e-20230704"
     }
