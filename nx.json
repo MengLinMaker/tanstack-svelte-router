@@ -24,70 +24,35 @@
   "targetDefaults": {
     "test:eslint": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/eslint.config.js"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^production", "{workspaceRoot}/eslint.config.js"]
     },
     "test:unit": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "default",
-        "^production"
-      ],
-      "outputs": [
-        "{projectRoot}/coverage"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^production"],
+      "outputs": ["{projectRoot}/coverage"]
     },
     "test:e2e": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "default",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^production"]
     },
     "test:types": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "default",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^production"]
     },
     "build": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "outputs": [
-        "{projectRoot}/build",
-        "{projectRoot}/dist"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "outputs": ["{projectRoot}/build", "{projectRoot}/dist"]
     },
     "test:build": {
       "cache": true,
-      "dependsOn": [
-        "build"
-      ],
-      "inputs": [
-        "production"
-      ]
+      "dependsOn": ["build"],
+      "inputs": ["production"]
     }
   },
   "nxCloudId": "6730c69c61847fe322e986de"
