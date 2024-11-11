@@ -112,7 +112,7 @@
     "@babel/traverse": "^7.25.9",
     "@babel/types": "^7.26.0",
     "@tanstack/router-generator": "workspace:^",
-    "@tanstack/virtual-file-routes": "workspace:^",
+    "@tanstack/virtual-file-routes": "^1.64.0",
     "@types/babel__core": "^7.20.5",
     "@types/babel__generator": "^7.6.8",
     "@types/babel__template": "^7.4.4",

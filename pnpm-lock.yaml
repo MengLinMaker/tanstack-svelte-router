@@ -10,7 +10,6 @@ overrides:
   '@tanstack/react-router': workspace:*
   '@tanstack/router-devtools': workspace:*
   '@tanstack/router-generator': workspace:*
-  '@tanstack/virtual-file-routes': workspace:*
   '@tanstack/router-plugin': workspace:*
   temp-react: 0.0.0-experimental-035a41c4e-20230704
   temp-react-dom: 0.0.0-experimental-035a41c4e-20230704
@@ -306,9 +305,6 @@ importers:
       '@tanstack/router-plugin':
         specifier: workspace:*
         version: link:../../../packages/router-plugin
-      '@tanstack/virtual-file-routes':
-        specifier: workspace:*
-        version: link:../../../packages/virtual-file-routes
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -325,6 +321,9 @@ importers:
       '@playwright/test':
         specifier: ^1.48.2
         version: 1.48.2
+      '@tanstack/virtual-file-routes':
+        specifier: ^1.64.0
+        version: 1.64.0
       '@types/react':
         specifier: ^18.2.47
         version: 18.3.12
@@ -572,8 +571,8 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/router-plugin
       '@tanstack/virtual-file-routes':
-        specifier: workspace:*
-        version: link:../../../packages/virtual-file-routes
+        specifier: ^1.64.0
+        version: 1.64.0
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -612,8 +611,8 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/router-plugin
       '@tanstack/virtual-file-routes':
-        specifier: workspace:*
-        version: link:../../../packages/virtual-file-routes
+        specifier: ^1.64.0
+        version: 1.64.0
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -705,8 +704,8 @@ importers:
   packages/router-generator:
     dependencies:
       '@tanstack/virtual-file-routes':
-        specifier: workspace:*
-        version: link:../virtual-file-routes
+        specifier: ^1.64.0
+        version: 1.64.0
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -750,8 +749,8 @@ importers:
         specifier: workspace:*
         version: link:../router-generator
       '@tanstack/virtual-file-routes':
-        specifier: workspace:*
-        version: link:../virtual-file-routes
+        specifier: ^1.64.0
+        version: 1.64.0
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
@@ -782,8 +781,6 @@ importers:
       zod:
         specifier: ^3.23.8
         version: 3.23.8
-
-  packages/virtual-file-routes: {}
 
 packages:
 
@@ -1955,6 +1952,10 @@ packages:
 
   '@tanstack/virtual-core@3.10.8':
     resolution: {integrity: sha512-PBu00mtt95jbKFi6Llk9aik8bnR3tR/oQP1o3TSi+iG//+Q2RTIzCEgKkHG8BB86kxMNW6O8wku+Lmi+QFR6jA==}
+
+  '@tanstack/virtual-file-routes@1.64.0':
+    resolution: {integrity: sha512-soW+gE9QTmMaqXM17r7y1p8NiQVIIECjdTaYla8BKL5Flj030m3KuxEQoiG1XgjtA0O7ayznFz2YvPcXIy3qDg==}
+    engines: {node: '>=12'}
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -5737,6 +5738,8 @@ snapshots:
   '@tanstack/store@0.5.5': {}
 
   '@tanstack/virtual-core@3.10.8': {}
+
+  '@tanstack/virtual-file-routes@1.64.0': {}
 
   '@testing-library/dom@10.4.0':
     dependencies:

@@ -67,7 +67,6 @@
       "@tanstack/react-router": "workspace:*",
       "@tanstack/router-devtools": "workspace:*",
       "@tanstack/router-generator": "workspace:*",
-      "@tanstack/virtual-file-routes": "workspace:*",
       "@tanstack/router-plugin": "workspace:*",
       "temp-react": "0.0.0-experimental-035a41c4e-20230704",
       "temp-react-dom": "0.0.0-experimental-035a41c4e-20230704"
