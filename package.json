@@ -26,7 +26,13 @@
     "dev": "pnpm run watch",
     "prettier": "prettier --ignore-unknown '**/*'",
     "prettier:write": "pnpm run prettier --write",
-    "cipublish": "node scripts/publish.js"
+    "cipublish": "node scripts/publish.js",
+    "test:eslint:all": "nx run-many --target=test:eslint --exclude=examples/**,e2e/**",
+    "test:unit:all": "nx run-many --target=test:unit --exclude=examples/**,e2e/**",
+    "test:build:all": "nx run-many --target=test:build --exclude=examples/**",
+    "test:types:all": "nx run-man --target=test:types --exclude=examples/**",
+    "test:e2e:all": "nx run-many --target=test:e2e",
+    "test:all": "nx run-many --targets=test:eslint:all,test:unit:all,test:e2e:all,test:types:all,test:build:all,build:all"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.16.4",

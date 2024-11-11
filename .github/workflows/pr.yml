@@ -39,7 +39,7 @@ jobs:
         run: pnpm build:all
 
       - name: Run Checks
-        run: pnpm run test:pr --parallel=3
+        run: pnpm run test:all --parallel=3
       # - name: Stop Nx Agents
       #   if: ${{ always() }}
       #   run: npx nx-cloud stop-all-agents
