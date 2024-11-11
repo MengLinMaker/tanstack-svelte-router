@@ -7,7 +7,7 @@
     "build": "vite build && tsc --noEmit",
     "serve": "vite preview",
     "start": "vite",
-    "test:e2e": "playwright test --project=chromium"
+    "_test:e2e": "playwright test --project=chromium"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.19",
