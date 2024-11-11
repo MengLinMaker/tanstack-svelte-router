@@ -7,7 +7,6 @@ settings:
 overrides:
   use-sync-external-store: 1.2.2
   eslint: ^9.14.0
-  '@tanstack/history': workspace:*
   '@tanstack/react-router': workspace:*
   '@tanstack/router-devtools': workspace:*
   '@tanstack/router-generator': workspace:*
@@ -641,13 +640,11 @@ importers:
         specifier: ^5.4.10
         version: 5.4.10(@types/node@22.8.6)(terser@5.36.0)
 
-  packages/history: {}
-
   packages/react-router:
     dependencies:
       '@tanstack/history':
-        specifier: workspace:*
-        version: link:../history
+        specifier: 1.61.1
+        version: 1.61.1
       '@tanstack/react-store':
         specifier: ^0.5.6
         version: 0.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1919,6 +1916,10 @@ packages:
     resolution: {integrity: sha512-JATGLntcaF/K3kQC5NOBsbeZ0aAJXQ6f/x2dZzbEtP8cT9dKf2VCrWCQAYm+mtSunPJN4LQ3ZJc6jlGDNjLUvg==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@tanstack/history@1.61.1':
+    resolution: {integrity: sha512-2CqERleeqO3hkhJmyJm37tiL3LYgeOpmo8szqdjgtnnG0z7ZpvzkZz6HkfOr9Ca/ha7mhAiouSvLYuLkM37AMg==}
+    engines: {node: '>=12'}
 
   '@tanstack/query-core@5.59.17':
     resolution: {integrity: sha512-jWdDiif8kaqnRGHNXAa9CnudtxY5v9DUxXhodgqX2Rwzj+1UwStDHEbBd9IA5C7VYAaJ2s+BxFR6PUBs8ERorA==}
@@ -5702,6 +5703,8 @@ snapshots:
       - supports-color
       - typescript
       - vite
+
+  '@tanstack/history@1.61.1': {}
 
   '@tanstack/query-core@5.59.17': {}
 
