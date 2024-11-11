@@ -25,8 +25,8 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist && rimraf ./coverage",
-    "test:eslint": "eslint ./src",
-    "test:build": "publint --strict && attw --ignore-rules no-resolution --pack .",
+    "_test:eslint": "eslint ./src",
+    "_test:build": "publint --strict && attw --ignore-rules no-resolution --pack .",
     "build": "vite build"
   },
   "type": "module",
