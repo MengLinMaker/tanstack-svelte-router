@@ -33,9 +33,11 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-      - name: Setup instead of Nx
-        run: pnpm i && pnpm build
-        
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build locally
+        run: pnpm build
+
       - name: Run Checks
         run: pnpm run test:pr --parallel=3
       # - name: Stop Nx Agents
