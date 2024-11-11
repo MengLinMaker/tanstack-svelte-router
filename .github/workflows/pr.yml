@@ -36,10 +36,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build locally
-        run: pnpm build
+        run: pnpm build:all
 
       - name: Run Checks
-        run: pnpm run test:ci --parallel=3
+        run: pnpm run test:pr --parallel=3
       # - name: Stop Nx Agents
       #   if: ${{ always() }}
       #   run: npx nx-cloud stop-all-agents
