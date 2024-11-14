@@ -131,8 +131,8 @@ export { encode, decode } from './qss'
 // export { redirect, isRedirect } from './tmp/redirects'
 // export type { AnyRedirect, Redirect, ResolvedRedirect } from './tmp/redirects'
 
-// export { rootRouteId } from './tmp/root'
-// export type { RootRouteId } from './tmp/root'
+export { rootRouteId } from './root'
+export type { RootRouteId } from './root'
 
 // export {
 //   RouteApi,
