@@ -14,15 +14,15 @@ export type {
 export { default as invariant } from 'tiny-invariant'
 export { default as warning } from 'tiny-warning'
 
-// export { useAwaited, Await } from './tmp/awaited'
-// export type { AwaitOptions } from './tmp/awaited'
+// export { useAwaited, Await } from './awaited'
+// export type { AwaitOptions } from './awaited'
 
-// export { ScriptOnce } from './tmp/ScriptOnce'
+// export { ScriptOnce } from './ScriptOnce'
 
-// export { defer } from './tmp/defer'
-// export type { DeferredPromiseState, DeferredPromise } from './tmp/defer'
+// export { defer } from './defer'
+// export type { DeferredPromiseState, DeferredPromise } from './defer'
 
-// export { CatchBoundary, ErrorComponent } from './tmp/CatchBoundary'
+// export { CatchBoundary, ErrorComponent } from './CatchBoundary'
 
 // export {
 //   FileRoute,
@@ -31,18 +31,18 @@ export { default as warning } from 'tiny-warning'
 //   LazyRoute,
 //   createLazyRoute,
 //   createLazyFileRoute,
-// } from './tmp/fileRoute'
+// } from './fileRoute'
 // export type {
 //   FileRoutesByPath,
 //   FileRouteTypes,
 //   LazyRouteOptions,
-// } from './tmp/fileRoute'
+// } from './fileRoute'
 
-// export * from './tmp/history'
+// export * from './history'
 
-// export { lazyRouteComponent } from './tmp/lazyRouteComponent'
+// export { lazyRouteComponent } from './lazyRouteComponent'
 
-// export { useLinkProps, createLink, Link, linkOptions } from './tmp/link'
+// export { useLinkProps, createLink, Link, linkOptions } from './link'
 // export type {
 //   CleanPath,
 //   Split,
@@ -76,9 +76,9 @@ export { default as warning } from 'tiny-warning'
 //   LinkComponentProps,
 //   CreateLinkProps,
 //   MakeOptionalPathParams,
-// } from './tmp/link'
+// } from './link'
 
-// export type { ParsedLocation } from './tmp/location'
+// export type { ParsedLocation } from './location'
 
 // export {
 //   Matches,
@@ -88,7 +88,7 @@ export { default as warning } from 'tiny-warning'
 //   useParentMatches,
 //   useChildMatches,
 //   isMatch,
-// } from './tmp/Matches'
+// } from './Matches'
 // export type {
 //   RouteMatch,
 //   AnyRouteMatch,
@@ -97,19 +97,19 @@ export { default as warning } from 'tiny-warning'
 //   MakeMatchRouteOptions,
 //   MakeRouteMatch,
 //   MakeRouteMatchUnion,
-// } from './tmp/Matches'
+// } from './Matches'
 
-// export { matchContext } from './tmp/matchContext'
+// export { matchContext } from './matchContext'
 
-// export { Match, Outlet } from './tmp/Match'
+// export { Match, Outlet } from './Match'
 
-// export { isServerSideError, defaultDeserializeError } from './tmp/isServerSideError'
+// export { isServerSideError, defaultDeserializeError } from './isServerSideError'
 
-// export { useMatch } from './tmp/useMatch'
+// export { useMatch } from './useMatch'
 
-// export { useLoaderDeps } from './tmp/useLoaderDeps'
+// export { useLoaderDeps } from './useLoaderDeps'
 
-// export { useLoaderData } from './tmp/useLoaderData'
+// export { useLoaderData } from './useLoaderData'
 
 // export {
 //   joinPaths,
@@ -123,13 +123,13 @@ export { default as warning } from 'tiny-warning'
 //   matchPathname,
 //   removeBasepath,
 //   matchByPath,
-// } from './tmp/path'
-// export type { Segment } from './tmp/path'
+// } from './path'
+// export type { Segment } from './path'
 
 export { encode, decode } from './qss'
 
-// export { redirect, isRedirect } from './tmp/redirects'
-// export type { AnyRedirect, Redirect, ResolvedRedirect } from './tmp/redirects'
+// export { redirect, isRedirect } from './redirects'
+// export type { AnyRedirect, Redirect, ResolvedRedirect } from './redirects'
 
 export { rootRouteId } from './root'
 export type { RootRouteId } from './root'
@@ -145,7 +145,7 @@ export type { RootRouteId } from './root'
 //   createRootRouteWithContext,
 //   createRouteMask,
 //   NotFoundRoute,
-// } from './tmp/route'
+// } from './route'
 // export type {
 //   AnyPathParams,
 //   ResolveParams,
@@ -227,7 +227,7 @@ export type { RootRouteId } from './root'
 //   ResolveAllParamsFromParent,
 //   ResolveRouteContext,
 //   ResolveSearchSchemaFn,
-// } from './tmp/route'
+// } from './route'
 
 // export type {
 //   ParseRoute,
@@ -242,7 +242,7 @@ export type { RootRouteId } from './root'
 //   AllLoaderData,
 //   FullSearchSchemaInput,
 //   AllContext,
-// } from './tmp/routeInfo'
+// } from './routeInfo'
 
 // export {
 //   componentTypes,
@@ -253,7 +253,7 @@ export type { RootRouteId } from './root'
 //   PathParamError,
 //   getInitialRouterState,
 //   defaultSerializeError,
-// } from './tmp/router'
+// } from './router'
 // export type {
 //   Register,
 //   AnyRouter,
@@ -276,9 +276,9 @@ export type { RootRouteId } from './root'
 //   AnyRouterWithContext,
 //   ExtractedEntry,
 //   StreamState,
-// } from './tmp/router'
+// } from './router'
 
-// export { RouterProvider, RouterContextProvider } from './tmp/RouterProvider'
+// export { RouterProvider, RouterContextProvider } from './RouterProvider'
 // export type {
 //   RouterProps,
 //   CommitLocationOptions,
@@ -286,46 +286,46 @@ export type { RootRouteId } from './root'
 //   NavigateFn,
 //   BuildLocationFn,
 //   InjectedHtmlEntry,
-// } from './tmp/RouterProvider'
+// } from './RouterProvider'
 
 // export {
 //   useScrollRestoration,
 //   useElementScrollRestoration,
 //   ScrollRestoration,
-// } from './tmp/scroll-restoration'
-// export type { ScrollRestorationOptions } from './tmp/scroll-restoration'
+// } from './scroll-restoration'
+// export type { ScrollRestorationOptions } from './scroll-restoration'
 
 // export {
 //   defaultParseSearch,
 //   defaultStringifySearch,
 //   parseSearchWith,
 //   stringifySearchWith,
-// } from './tmp/searchParams'
-// export type { SearchSerializer, SearchParser } from './tmp/searchParams'
+// } from './searchParams'
+// export type { SearchSerializer, SearchParser } from './searchParams'
 
-// export { defaultTransformer } from './tmp/transformer'
-// export type { RouterTransformer } from './tmp/transformer'
+// export { defaultTransformer } from './transformer'
+// export type { RouterTransformer } from './transformer'
 
-// export { useBlocker, Block } from './tmp/useBlocker'
+// export { useBlocker, Block } from './useBlocker'
 
-// export { useNavigate, Navigate } from './tmp/useNavigate'
-// export type { UseNavigateResult } from './tmp/useNavigate'
+// export { useNavigate, Navigate } from './useNavigate'
+// export type { UseNavigateResult } from './useNavigate'
 
-// export { useParams } from './tmp/useParams'
+// export { useParams } from './useParams'
 
-// export { useSearch } from './tmp/useSearch'
+// export { useSearch } from './useSearch'
 
 // export {
 //   getRouterContext, // SSR
-// } from './tmp/routerContext'
+// } from './routerContext'
 
-// export { useRouteContext } from './tmp/useRouteContext'
+// export { useRouteContext } from './useRouteContext'
 
-// export { useRouter } from './tmp/useRouter'
+// export { useRouter } from './useRouter'
 
-// export { useRouterState } from './tmp/useRouterState'
+// export { useRouterState } from './useRouterState'
 
-// export { useLocation } from './tmp/useLocation'
+// export { useLocation } from './useLocation'
 
 export {
   escapeJSON, // SSR
@@ -345,12 +345,12 @@ export {
 //   isNotFound,
 //   CatchNotFound,
 //   DefaultGlobalNotFound,
-// } from './tmp/not-found'
-// export type { NotFoundError } from './tmp/not-found'
+// } from './not-found'
+// export type { NotFoundError } from './not-found'
 
-// export type { Manifest, RouterManagedTag } from './tmp/manifest'
+// export type { Manifest, RouterManagedTag } from './manifest'
 
 export { createControlledPromise } from './utils'
 export type { ControlledPromise } from './utils'
 
-// export { retainSearchParams, stripSearchParams } from './tmp/searchMiddleware'
+// export { retainSearchParams, stripSearchParams } from './searchMiddleware'
