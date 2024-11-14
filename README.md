@@ -1,4 +1,4 @@
-# Tanstack Svelte Router - SvelteHack 2024
+# Tanstack Svelte Router
 
 A port of the Tanstack React Router to Svelte 5 with runes.
 
