@@ -126,7 +126,7 @@ export { default as warning } from 'tiny-warning'
 // } from './tmp/path'
 // export type { Segment } from './tmp/path'
 
-// export { encode, decode } from './tmp/qss'
+export { encode, decode } from './qss'
 
 // export { redirect, isRedirect } from './tmp/redirects'
 // export type { AnyRedirect, Redirect, ResolvedRedirect } from './tmp/redirects'
