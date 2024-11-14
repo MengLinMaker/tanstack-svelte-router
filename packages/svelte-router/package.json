@@ -1,5 +1,5 @@
 {
-  "name": "@tanstack/svelte-router",
+  "name": "@menglinmaker/tanstack-svelte-router",
   "version": "0.0.1",
   "description": "Modern and scalable routing for React applications",
   "author": "Meng Lin",
