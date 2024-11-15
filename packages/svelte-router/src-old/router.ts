@@ -26,7 +26,7 @@ import {
   trimPath,
   trimPathLeft,
   trimPathRight,
-} from './path'
+} from '../src/path'
 import { isRedirect, isResolvedRedirect } from './redirects'
 import { isNotFound } from './not-found'
 import { defaultTransformer } from './transformer'

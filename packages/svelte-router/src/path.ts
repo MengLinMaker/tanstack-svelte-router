@@ -1,4 +1,4 @@
-import { last } from '../utils'
+import { last } from './utils'
 import type { MatchLocation } from './RouterProvider'
 import type { AnyPathParams } from './route'
 

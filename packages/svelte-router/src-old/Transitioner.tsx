@@ -2,7 +2,7 @@ import * as React from 'react'
 import { pick, useLayoutEffect, usePrevious } from '../utils'
 import { useRouter } from './useRouter'
 import { useRouterState } from './useRouterState'
-import { trimPathRight } from './path'
+import { trimPathRight } from '../src/path'
 
 export function Transitioner() {
   const router = useRouter()

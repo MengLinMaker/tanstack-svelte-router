@@ -11,7 +11,7 @@ import {
   useIntersectionObserver,
   useLayoutEffect,
 } from '../utils'
-import { exactPathTest, removeTrailingSlash } from './path'
+import { exactPathTest, removeTrailingSlash } from '../src/path'
 import type { ParsedLocation } from './location'
 import type { HistoryState } from '@tanstack/history'
 import type {
