@@ -1,4 +1,4 @@
-import { decode, encode } from '../src/qss'
+import { decode, encode } from './qss'
 import type { AnySearchSchema } from './route'
 
 export const defaultParseSearch = parseSearchWith(JSON.parse)
