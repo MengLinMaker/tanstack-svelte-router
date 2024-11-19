@@ -1,4 +1,4 @@
 packages:
   - 'packages/*'
-  - 'examples/react/*'
-  - 'e2e/react-router/*'
+  - 'examples/**/*'
+  - 'e2e/**/*'
