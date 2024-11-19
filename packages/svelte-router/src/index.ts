@@ -305,8 +305,8 @@ export type { RootRouteId } from './root'
 // } from './searchParams'
 // export type { SearchSerializer, SearchParser } from './searchParams'
 
-// export { defaultTransformer } from './transformer'
-// export type { RouterTransformer } from './transformer'
+export { defaultTransformer } from './transformer'
+export type { RouterTransformer } from './transformer'
 
 // export { useBlocker, Block } from './useBlocker'
 
