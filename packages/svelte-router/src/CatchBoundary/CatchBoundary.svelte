@@ -1,8 +1,7 @@
 <script lang="ts">
-  // import ErrorComponent from './ErrorComponent.svelte'
+  import type { ErrorRouteComponent } from '../route'
   import type { Component } from 'svelte'
-
-  type ErrorRouteComponent = Component
+  // import ErrorComponent from './ErrorComponent.svelte'
 
   const props = $props<{
     getResetKey: () => number | string

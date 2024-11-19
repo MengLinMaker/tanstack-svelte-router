@@ -342,13 +342,13 @@ export {
   // shallow,
 } from './utils'
 
-// export {
-//   notFound,
-//   isNotFound,
-//   CatchNotFound,
-//   DefaultGlobalNotFound,
-// } from './not-found'
-// export type { NotFoundError } from './not-found'
+export {
+  notFound,
+  isNotFound,
+  CatchNotFound,
+  DefaultGlobalNotFound,
+} from './not-found'
+export type { NotFoundError } from './not-found'
 
 // export type { Manifest, RouterManagedTag } from './manifest'
 
