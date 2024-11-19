@@ -1,8 +1,4 @@
 import { getRouterContext } from './getRouterContext'
-import routerContextComponent from './routerContext.svelte'
+import RouterContextProvider from './routerContext.svelte'
 
-const routerContext = {
-  Provider: routerContextComponent
-}
-
-export { routerContext, getRouterContext }
+export { RouterContextProvider, getRouterContext }
