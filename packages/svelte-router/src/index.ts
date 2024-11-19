@@ -24,7 +24,7 @@ export { default as warning } from 'tiny-warning'
 // export { defer } from './defer'
 // export type { DeferredPromiseState, DeferredPromise } from './defer'
 
-export { CatchBoundary, ErrorComponent } from './CatchBoundary/index'
+export { CatchBoundary, ErrorComponent } from './CatchBoundary'
 
 // export {
 //   FileRoute,
