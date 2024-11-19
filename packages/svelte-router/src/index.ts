@@ -317,9 +317,9 @@ export type { RootRouteId } from './root'
 
 // export { useSearch } from './useSearch'
 
-// export {
-//   getRouterContext, // SSR
-// } from './routerContext'
+export {
+  getRouterContext, // SSR
+} from './routerContext'
 
 // export { useRouteContext } from './useRouteContext'
 
