@@ -355,4 +355,4 @@ export {
 export { createControlledPromise } from './utils'
 export type { ControlledPromise } from './utils'
 
-// export { retainSearchParams, stripSearchParams } from './searchMiddleware'
+export { retainSearchParams, stripSearchParams } from './searchMiddleware'
