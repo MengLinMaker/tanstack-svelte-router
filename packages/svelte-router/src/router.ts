@@ -1,6 +1,4 @@
-import type {
-  ControlledPromise,
-} from './utils'
+import type { ControlledPromise } from './utils'
 
 declare global {
   interface Window {
