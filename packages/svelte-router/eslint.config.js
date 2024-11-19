@@ -11,6 +11,7 @@ export default [
       'svelte/block-lang': ['error', { script: ['ts'] }],
       'svelte/no-svelte-internal': 'error',
       'svelte/valid-compile': 'off',
+      'prefer-const': 'off',
     },
   },
 ]

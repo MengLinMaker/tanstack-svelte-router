@@ -655,6 +655,30 @@ importers:
         specifier: ^5.4.10
         version: 5.4.10(@types/node@22.8.6)(terser@5.36.0)
 
+  examples/svelte/basic-file-based:
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte':
+        specifier: ^4.0.0
+        version: 4.0.0(svelte@5.1.15)(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0))
+      '@tsconfig/svelte':
+        specifier: ^5.0.4
+        version: 5.0.4
+      svelte:
+        specifier: ^5.1.3
+        version: 5.1.15
+      svelte-check:
+        specifier: ^4.0.5
+        version: 4.0.7(picomatch@4.0.2)(svelte@5.1.15)(typescript@5.6.3)
+      tslib:
+        specifier: ^2.8.0
+        version: 2.8.1
+      typescript:
+        specifier: ~5.6.2
+        version: 5.6.3
+      vite:
+        specifier: ^5.4.10
+        version: 5.4.10(@types/node@22.8.6)(terser@5.36.0)
+
   packages/react-router:
     dependencies:
       '@tanstack/history':
@@ -818,13 +842,13 @@ importers:
         version: 2.3.7(svelte@5.1.15)(typescript@5.6.3)
       '@sveltejs/vite-plugin-svelte':
         specifier: 4.0.0
-        version: 4.0.0(svelte@5.1.15)(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0))
+        version: 4.0.0(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite)
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
       '@testing-library/svelte':
         specifier: ^5.2.4
-        version: 5.2.4(svelte@5.1.15)(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0))(vitest@2.1.4(@types/node@22.8.6)(jsdom@25.0.1)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))(terser@5.36.0))
+        version: 5.2.4(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite)(vitest@2.1.4(@types/node@22.8.6)(jsdom@25.0.1)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))(terser@5.36.0))
       eslint-plugin-svelte:
         specifier: 2.46.0
         version: 2.46.0(eslint@9.14.0(jiti@2.4.0))(svelte@5.1.15)
@@ -836,7 +860,7 @@ importers:
         version: 4.0.7(picomatch@4.0.2)(svelte@5.1.15)(typescript@5.6.3)
       vite:
         specifier: link:@sveltejs/kit/vite
-        version: 5.4.10(@types/node@22.8.6)(terser@5.36.0)
+        version: link:@sveltejs/kit/vite
 
   packages/virtual-file-routes: {}
 
@@ -5884,6 +5908,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@sveltejs/vite-plugin-svelte-inspector@3.0.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite))(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite)':
+    dependencies:
+      '@sveltejs/vite-plugin-svelte': 4.0.0(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite)
+      debug: 4.3.7
+      svelte: 5.1.15
+      vite: link:packages/svelte-router/@sveltejs/kit/vite
+    transitivePeerDependencies:
+      - supports-color
+
   '@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.15)(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0))':
     dependencies:
       '@sveltejs/vite-plugin-svelte-inspector': 3.0.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.15)(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0)))(svelte@5.1.15)(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0))
@@ -5894,6 +5927,19 @@ snapshots:
       svelte: 5.1.15
       vite: 5.4.10(@types/node@22.8.6)(terser@5.36.0)
       vitefu: 1.0.3(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0))
+    transitivePeerDependencies:
+      - supports-color
+
+  '@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite)':
+    dependencies:
+      '@sveltejs/vite-plugin-svelte-inspector': 3.0.1(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite))(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite)
+      debug: 4.3.7
+      deepmerge: 4.3.1
+      kleur: 4.1.5
+      magic-string: 0.30.12
+      svelte: 5.1.15
+      vite: link:packages/svelte-router/@sveltejs/kit/vite
+      vitefu: 1.0.3(vite@packages+svelte-router+@sveltejs+kit+vite)
     transitivePeerDependencies:
       - supports-color
 
@@ -6062,12 +6108,12 @@ snapshots:
       '@types/react': 18.3.12
       '@types/react-dom': 18.3.1
 
-  '@testing-library/svelte@5.2.4(svelte@5.1.15)(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0))(vitest@2.1.4(@types/node@22.8.6)(jsdom@25.0.1)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))(terser@5.36.0))':
+  '@testing-library/svelte@5.2.4(svelte@5.1.15)(vite@packages+svelte-router+@sveltejs+kit+vite)(vitest@2.1.4(@types/node@22.8.6)(jsdom@25.0.1)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))(terser@5.36.0))':
     dependencies:
       '@testing-library/dom': 10.4.0
       svelte: 5.1.15
     optionalDependencies:
-      vite: 5.4.10(@types/node@22.8.6)(terser@5.36.0)
+      vite: link:packages/svelte-router/@sveltejs/kit/vite
       vitest: 2.1.4(@types/node@22.8.6)(jsdom@25.0.1)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))(terser@5.36.0)
 
   '@tsconfig/svelte@5.0.4': {}
@@ -8914,6 +8960,10 @@ snapshots:
   vitefu@1.0.3(vite@5.4.10(@types/node@22.8.6)(terser@5.36.0)):
     optionalDependencies:
       vite: 5.4.10(@types/node@22.8.6)(terser@5.36.0)
+
+  vitefu@1.0.3(vite@packages+svelte-router+@sveltejs+kit+vite):
+    optionalDependencies:
+      vite: link:packages/svelte-router/@sveltejs/kit/vite
 
   vitest@2.1.4(@types/node@22.8.6)(jsdom@25.0.1)(msw@2.6.0(@types/node@22.8.6)(typescript@5.6.3))(terser@5.36.0):
     dependencies:
