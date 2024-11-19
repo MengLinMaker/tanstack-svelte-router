@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ErrorComponent from './ErrorComponent.svelte'
+  // import ErrorComponent from './ErrorComponent.svelte'
   import type { Component } from 'svelte'
 
   type ErrorRouteComponent = Component
@@ -11,8 +11,8 @@
     onCatch?: (error: Error, errorInfo: any) => void
   }>()
 
-  const RenderedErrorComponent: Component =
-    props.errorComponent ?? ErrorComponent
+  // const RenderedErrorComponent: Component =
+  //   props.errorComponent ?? ErrorComponent
 </script>
 
 <!-- <svelte:boundary}> -->
