@@ -1,5 +1,3 @@
-// PORTING IN PROGRESS...
-
 export {
   createHistory,
   createBrowserHistory,
@@ -91,15 +89,15 @@ export { CatchBoundary, ErrorComponent } from './CatchBoundary'
 //   useChildMatches,
 //   isMatch,
 // } from './Matches'
-// export type {
-//   RouteMatch,
-//   AnyRouteMatch,
-//   MatchRouteOptions,
-//   UseMatchRouteOptions,
-//   MakeMatchRouteOptions,
-//   MakeRouteMatch,
-//   MakeRouteMatchUnion,
-// } from './Matches'
+export type {
+  RouteMatch,
+  // AnyRouteMatch,
+  // MatchRouteOptions,
+  // UseMatchRouteOptions,
+  // MakeMatchRouteOptions,
+  // MakeRouteMatch,
+  // MakeRouteMatchUnion,
+} from './Matches'
 
 // export { matchContext } from './matchContext'
 
@@ -136,115 +134,115 @@ export { encode, decode } from './qss'
 export { rootRouteId } from './root'
 export type { RootRouteId } from './root'
 
-// export {
-//   RouteApi,
-//   getRouteApi,
-//   Route,
-//   createRoute,
-//   RootRoute,
-//   rootRouteWithContext,
-//   createRootRoute,
-//   createRootRouteWithContext,
-//   createRouteMask,
-//   NotFoundRoute,
-// } from './route'
-// export type {
-//   AnyPathParams,
-//   ResolveParams,
-//   SearchSchemaInput,
-//   SearchValidatorAdapter,
-//   AnySearchSchema,
-//   AnyContext,
-//   RouteContext,
-//   PreloadableObj,
-//   RoutePathOptions,
-//   StaticDataRouteOption,
-//   RoutePathOptionsIntersection,
-//   RouteOptions,
-//   FileBaseRouteOptions,
-//   BaseRouteOptions,
-//   UpdatableRouteOptions,
-//   UpdatableStaticRouteOption,
-//   MetaDescriptor,
-//   RouteLinkEntry,
-//   ParseParamsFn,
-//   RouteLoaderFn,
-//   LoaderFnContext,
-//   SearchFilter,
-//   ResolveId,
-//   InferFullSearchSchema,
-//   InferFullSearchSchemaInput,
-//   ResolveFullSearchSchema,
-//   ResolveFullSearchSchemaInput,
-//   AnyRoute,
-//   RouteConstraints,
-//   AnyRootRoute,
-//   ResolveFullPath,
-//   RouteMask,
-//   ErrorRouteProps,
-//   ErrorComponentProps,
-//   NotFoundRouteProps,
-//   ReactNode,
-//   SyncRouteComponent,
-//   AsyncRouteComponent,
-//   RouteComponent,
-//   ErrorRouteComponent,
-//   NotFoundRouteComponent,
-//   TrimPath,
-//   TrimPathLeft,
-//   TrimPathRight,
-//   RootRouteOptions,
-//   AnyRouteWithContext,
-//   ParseSplatParams,
-//   SplatParams,
-//   StringifyParamsFn,
-//   ParamsOptions,
-//   FullSearchSchemaOption,
-//   RouteContextFn,
-//   RouteContextOptions,
-//   BeforeLoadFn,
-//   BeforeLoadContextOptions,
-//   AnySearchValidator,
-//   DefaultSearchValidator,
-//   ContextOptions,
-//   SearchValidatorObj,
-//   AnySearchValidatorObj,
-//   AnySearchValidatorAdapter,
-//   AnySearchValidatorFn,
-//   SearchValidatorFn,
-//   SearchValidator,
-//   InferAllParams,
-//   InferAllContext,
-//   ResolveSearchSchemaFnInput,
-//   ResolveSearchSchemaInput,
-//   ResolveSearchSchema,
-//   LooseReturnType,
-//   LooseAsyncReturnType,
-//   ContextReturnType,
-//   ContextAsyncReturnType,
-//   RouteContextParameter,
-//   BeforeLoadContextParameter,
-//   ResolveAllContext,
-//   ResolveLoaderData,
-//   ResolveAllParamsFromParent,
-//   ResolveRouteContext,
-//   ResolveSearchSchemaFn,
-// } from './route'
+export {
+  // RouteApi,
+  // getRouteApi,
+  Route,
+  createRoute,
+  RootRoute,
+  rootRouteWithContext,
+  createRootRoute,
+  createRootRouteWithContext,
+  // createRouteMask,
+  NotFoundRoute,
+} from './route'
+export type {
+  AnyPathParams,
+  ResolveParams,
+  SearchSchemaInput,
+  SearchValidatorAdapter,
+  AnySearchSchema,
+  AnyContext,
+  RouteContext,
+  PreloadableObj,
+  RoutePathOptions,
+  StaticDataRouteOption,
+  RoutePathOptionsIntersection,
+  RouteOptions,
+  FileBaseRouteOptions,
+  BaseRouteOptions,
+  UpdatableRouteOptions,
+  UpdatableStaticRouteOption,
+  MetaDescriptor,
+  RouteLinkEntry,
+  ParseParamsFn,
+  // RouteLoaderFn,
+  // LoaderFnContext,
+  SearchFilter,
+  ResolveId,
+  InferFullSearchSchema,
+  InferFullSearchSchemaInput,
+  ResolveFullSearchSchema,
+  ResolveFullSearchSchemaInput,
+  AnyRoute,
+  RouteConstraints,
+  AnyRootRoute,
+  ResolveFullPath,
+  // RouteMask,
+  ErrorRouteProps,
+  ErrorComponentProps,
+  NotFoundRouteProps,
+  SvelteNode,
+  SyncRouteComponent,
+  AsyncRouteComponent,
+  RouteComponent,
+  ErrorRouteComponent,
+  NotFoundRouteComponent,
+  TrimPath,
+  TrimPathLeft,
+  TrimPathRight,
+  RootRouteOptions,
+  AnyRouteWithContext,
+  ParseSplatParams,
+  SplatParams,
+  StringifyParamsFn,
+  ParamsOptions,
+  FullSearchSchemaOption,
+  RouteContextFn,
+  RouteContextOptions,
+  BeforeLoadFn,
+  BeforeLoadContextOptions,
+  AnySearchValidator,
+  DefaultSearchValidator,
+  ContextOptions,
+  SearchValidatorObj,
+  AnySearchValidatorObj,
+  AnySearchValidatorAdapter,
+  AnySearchValidatorFn,
+  SearchValidatorFn,
+  SearchValidator,
+  InferAllParams,
+  InferAllContext,
+  ResolveSearchSchemaFnInput,
+  ResolveSearchSchemaInput,
+  ResolveSearchSchema,
+  LooseReturnType,
+  LooseAsyncReturnType,
+  ContextReturnType,
+  ContextAsyncReturnType,
+  RouteContextParameter,
+  BeforeLoadContextParameter,
+  ResolveAllContext,
+  ResolveLoaderData,
+  ResolveAllParamsFromParent,
+  ResolveRouteContext,
+  ResolveSearchSchemaFn,
+} from './route'
 
-// export type {
-//   ParseRoute,
-//   RoutesById,
-//   RouteById,
-//   RouteIds,
-//   RoutesByPath,
-//   RouteByPath,
-//   RoutePaths,
-//   FullSearchSchema,
-//   AllParams,
-//   AllLoaderData,
-//   FullSearchSchemaInput,
-//   AllContext,
-// } from './routeInfo'
+export type {
+  ParseRoute,
+  // RoutesById,
+  // RouteById,
+  // RouteIds,
+  // RoutesByPath,
+  // RouteByPath,
+  // RoutePaths,
+  FullSearchSchema,
+  AllParams,
+  AllLoaderData,
+  FullSearchSchemaInput,
+  AllContext,
+} from './routeInfo'
 
 // export {
 //   componentTypes,
@@ -281,14 +279,14 @@ export type { RootRouteId } from './root'
 // } from './router'
 
 // export { RouterProvider, RouterContextProvider } from './RouterProvider'
-// export type {
-//   RouterProps,
-//   CommitLocationOptions,
-//   MatchLocation,
-//   NavigateFn,
-//   BuildLocationFn,
-//   InjectedHtmlEntry,
-// } from './RouterProvider'
+export type {
+  // RouterProps,
+  // CommitLocationOptions,
+  MatchLocation,
+  // NavigateFn,
+  // BuildLocationFn,
+  // InjectedHtmlEntry,
+} from './RouterProvider'
 
 // export {
 //   useScrollRestoration,
@@ -297,13 +295,13 @@ export type { RootRouteId } from './root'
 // } from './scroll-restoration'
 // export type { ScrollRestorationOptions } from './scroll-restoration'
 
-// export {
-//   defaultParseSearch,
-//   defaultStringifySearch,
-//   parseSearchWith,
-//   stringifySearchWith,
-// } from './searchParams'
-// export type { SearchSerializer, SearchParser } from './searchParams'
+export {
+  defaultParseSearch,
+  defaultStringifySearch,
+  parseSearchWith,
+  stringifySearchWith,
+} from './searchParams'
+export type { SearchSerializer, SearchParser } from './searchParams'
 
 export { defaultTransformer } from './transformer'
 export type { RouterTransformer } from './transformer'
@@ -323,9 +321,9 @@ export {
 
 // export { useRouteContext } from './useRouteContext'
 
-// export { useRouter } from './useRouter'
+export { useRouter } from './useRouter'
 
-// export { useRouterState } from './useRouterState'
+export { useRouterState } from './useRouterState'
 
 // export { useLocation } from './useLocation'
 

@@ -23,16 +23,16 @@ export type WithoutEmpty<T> = T extends any ? ({} extends T ? never : T) : never
 // export type Expand<T> = T
 export type Expand<T> = T extends object
   ? T extends infer O
-    ? O extends Function
-      ? O
-      : { [K in keyof O]: O[K] }
-    : never
+  ? O extends Function
+  ? O
+  : { [K in keyof O]: O[K] }
+  : never
   : T
 
 export type DeepPartial<T> = T extends object
   ? {
-      [P in keyof T]?: DeepPartial<T[P]>
-    }
+    [P in keyof T]?: DeepPartial<T[P]>
+  }
   : T
 
 export type MakeDifferenceOptional<TLeft, TRight> = Omit<
@@ -53,10 +53,10 @@ export type IsUnion<T, U extends T = T> = (
 export type Assign<TLeft, TRight> = keyof TLeft extends never
   ? TRight
   : keyof TRight extends never
-    ? TLeft
-    : keyof TLeft & keyof TRight extends never
-      ? TLeft & TRight
-      : Omit<TLeft, keyof TRight> & TRight
+  ? TLeft
+  : keyof TLeft & keyof TRight extends never
+  ? TLeft & TRight
+  : Omit<TLeft, keyof TRight> & TRight
 
 export type Timeout = ReturnType<typeof setTimeout>
 
@@ -74,14 +74,14 @@ export type MergeUnionObjects<TUnion> = TUnion extends MergeUnionPrimitive
 
 export type MergeUnionObject<TUnion> =
   MergeUnionObjects<TUnion> extends infer TObj
-    ? {
-        [TKey in TObj extends any ? keyof TObj : never]?: TObj extends any
-          ? TKey extends keyof TObj
-            ? TObj[TKey]
-            : never
-          : never
-      }
+  ? {
+    [TKey in TObj extends any ? keyof TObj : never]?: TObj extends any
+    ? TKey extends keyof TObj
+    ? TObj[TKey]
     : never
+    : never
+  }
+  : never
 
 export type MergeUnionPrimitive =
   | ReadonlyArray<any>
@@ -94,8 +94,8 @@ export type MergeUnionPrimitive =
 export type MergeUnionPrimitives<TUnion> = TUnion extends MergeUnionPrimitive
   ? TUnion
   : TUnion extends object
-    ? never
-    : TUnion
+  ? never
+  : TUnion
 
 export type MergeUnion<TUnion> =
   | MergeUnionPrimitives<TUnion>
@@ -261,8 +261,8 @@ export function deepEqual(
 
 export type StringLiteral<T> = T extends string
   ? string extends T
-    ? string
-    : T
+  ? string
+  : T
   : never
 
 export type StrictOrFrom<
@@ -270,13 +270,13 @@ export type StrictOrFrom<
   TStrict extends boolean = true,
 > = TStrict extends false
   ? {
-      from?: never
-      strict: TStrict
-    }
+    from?: never
+    strict: TStrict
+  }
   : {
-      from: StringLiteral<TFrom> | TFrom
-      strict?: TStrict
-    }
+    from: StringLiteral<TFrom> | TFrom
+    strict?: TStrict
+  }
 
 /**
  *
