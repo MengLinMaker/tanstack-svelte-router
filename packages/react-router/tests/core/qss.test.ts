@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { describe, it, expect } from 'vitest'
-import { encode, decode } from '../src/qss'
+import { encode, decode } from '../../src/core/qss'
 
 describe('encode function', () => {
   it('should encode an object into a query string without a prefix', () => {

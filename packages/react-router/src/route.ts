@@ -2,14 +2,14 @@ import invariant from 'tiny-invariant'
 import { useMatch } from './useMatch'
 import { useLoaderDeps } from './useLoaderDeps'
 import { useLoaderData } from './useLoaderData'
-import { joinPaths, trimPathLeft } from './path'
+import { joinPaths, trimPathLeft } from './core/path'
 import { useParams } from './useParams'
 import { useSearch } from './useSearch'
 import { notFound } from './not-found'
 import { useNavigate } from './useNavigate'
-import { rootRouteId } from './root'
+import { rootRouteId } from './core/root'
 import type * as React from 'react'
-import type { RootRouteId } from './root'
+import type { RootRouteId } from './core/root'
 import type { UseNavigateResult } from './useNavigate'
 import type {
   MakeRouteMatch,
@@ -21,18 +21,17 @@ import type { NavigateOptions, ParsePathParams, ToMaskOptions } from './link'
 import type { ParsedLocation } from './location'
 import type { RouteById, RouteIds, RoutePaths } from './routeInfo'
 import type { AnyRouter, RegisteredRouter, Router } from './router'
-import type { Assign, Constrain, Expand, NoInfer } from './utils'
+import type { Assign, Constrain, Expand, NoInfer } from './core/utils'
 import type { BuildLocationFn, NavigateFn } from './RouterProvider'
 import type { NotFoundError } from './not-found'
 import type { LazyRoute } from './fileRoute'
+import type { AnySearchSchema, SearchMiddleware } from './core/route'
 
 export type AnyPathParams = {}
 
 export type SearchSchemaInput = {
   __TSearchSchemaInput__: 'TSearchSchemaInput'
 }
-
-export type AnySearchSchema = {}
 
 export type AnyContext = {}
 
@@ -615,15 +614,6 @@ export interface LoaderFnContext<
 }
 
 export type SearchFilter<TInput, TResult = TInput> = (prev: TInput) => TResult
-
-export type SearchMiddlewareContext<TSearchSchema> = {
-  search: TSearchSchema
-  next: (newSearch: TSearchSchema) => TSearchSchema
-}
-
-export type SearchMiddleware<TSearchSchema> = (
-  ctx: SearchMiddlewareContext<TSearchSchema>,
-) => TSearchSchema
 
 export type ResolveId<
   TParentRoute,

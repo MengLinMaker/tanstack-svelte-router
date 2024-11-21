@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useRouter } from './useRouter'
-import { functionalUpdate } from './utils'
+import { functionalUpdate } from './core/utils'
 import type { ParsedLocation } from './location'
-import type { NonNullableUpdater } from './utils'
+import type { NonNullableUpdater } from './core/utils'
 
 const useLayoutEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect

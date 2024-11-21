@@ -6,14 +6,17 @@ import warning from 'tiny-warning'
 import { CatchBoundary, ErrorComponent } from './CatchBoundary'
 import { useRouterState } from './useRouterState'
 import { useRouter } from './useRouter'
-import { createControlledPromise, pick } from './utils'
+import { createControlledPromise, pick } from './core/utils'
 import { CatchNotFound, isNotFound } from './not-found'
 import { isRedirect } from './redirects'
 import { matchContext } from './matchContext'
-import { defaultDeserializeError, isServerSideError } from './isServerSideError'
+import {
+  defaultDeserializeError,
+  isServerSideError,
+} from './core/isServerSideError'
 import { SafeFragment } from './SafeFragment'
 import { renderRouteNotFound } from './renderRouteNotFound'
-import { rootRouteId } from './root'
+import { rootRouteId } from './core/root'
 import type { AnyRoute } from './route'
 
 export const Match = React.memo(function MatchImpl({

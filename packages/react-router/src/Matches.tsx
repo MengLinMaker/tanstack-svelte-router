@@ -26,7 +26,7 @@ import type {
   ControlledPromise,
   DeepPartial,
   NoInfer,
-} from './utils'
+} from './core/utils'
 
 export type AnyMatchAndValue = { match: any; value: any }
 

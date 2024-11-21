@@ -3,7 +3,10 @@ import warning from 'tiny-warning'
 import { useRouter } from './useRouter'
 import { defaultSerializeError } from './router'
 import { defer } from './defer'
-import { defaultDeserializeError, isServerSideError } from './isServerSideError'
+import {
+  defaultDeserializeError,
+  isServerSideError,
+} from './core/isServerSideError'
 import type { DeferredPromise } from './defer'
 
 export type AwaitOptions<T> = {

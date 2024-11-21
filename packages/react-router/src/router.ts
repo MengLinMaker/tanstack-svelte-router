@@ -6,8 +6,8 @@ import {
 import { Store } from '@tanstack/react-store'
 import invariant from 'tiny-invariant'
 import warning from 'tiny-warning'
-import { rootRouteId } from './root'
-import { defaultParseSearch, defaultStringifySearch } from './searchParams'
+import { rootRouteId } from './core/root'
+import { defaultParseSearch, defaultStringifySearch } from './core/searchParams'
 import {
   createControlledPromise,
   deepEqual,
@@ -15,7 +15,7 @@ import {
   last,
   pick,
   replaceEqualDeep,
-} from './utils'
+} from './core/utils'
 import {
   cleanPath,
   interpolatePath,
@@ -26,10 +26,10 @@ import {
   trimPath,
   trimPathLeft,
   trimPathRight,
-} from './path'
+} from './core/path'
 import { isRedirect, isResolvedRedirect } from './redirects'
 import { isNotFound } from './not-found'
-import { defaultTransformer } from './transformer'
+import { defaultTransformer } from './core/transformer'
 import type * as React from 'react'
 import type {
   HistoryLocation,
@@ -42,7 +42,6 @@ import type {
   AnyContext,
   AnyRoute,
   AnyRouteWithContext,
-  AnySearchSchema,
   AnySearchValidator,
   BeforeLoadContextOptions,
   ErrorRouteComponent,
@@ -52,8 +51,8 @@ import type {
   RouteComponent,
   RouteContextOptions,
   RouteMask,
-  SearchMiddleware,
 } from './route'
+import type { AnySearchSchema, SearchMiddleware } from './core/route'
 import type {
   FullSearchSchema,
   RouteById,
@@ -66,7 +65,7 @@ import type {
   NonNullableUpdater,
   PickAsRequired,
   Updater,
-} from './utils'
+} from './core/utils'
 import type {
   AnyRouteMatch,
   MakeRouteMatch,
@@ -74,7 +73,7 @@ import type {
   MatchRouteOptions,
 } from './Matches'
 import type { ParsedLocation } from './location'
-import type { SearchParser, SearchSerializer } from './searchParams'
+import type { SearchParser, SearchSerializer } from './core/searchParams'
 import type {
   BuildLocationFn,
   CommitLocationOptions,
@@ -83,7 +82,7 @@ import type {
 import type { AnyRedirect, ResolvedRedirect } from './redirects'
 import type { NotFoundError } from './not-found'
 import type { NavigateOptions, ResolveRelativePath, ToOptions } from './link'
-import type { RouterTransformer } from './transformer'
+import type { RouterTransformer } from './core/transformer'
 
 declare global {
   interface Window {

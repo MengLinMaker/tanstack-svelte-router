@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { defaultTransformer } from '../src/transformer'
+import { defaultTransformer } from '../../src/core/transformer'
 
 describe('transformer.stringify', () => {
   test('should stringify dates', () => {

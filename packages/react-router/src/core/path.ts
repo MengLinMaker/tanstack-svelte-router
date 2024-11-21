@@ -1,6 +1,6 @@
 import { last } from './utils'
-import type { MatchLocation } from './RouterProvider'
-import type { AnyPathParams } from './route'
+import type { MatchLocation } from '../RouterProvider'
+import type { AnyPathParams } from '../route'
 
 export interface Segment {
   type: 'pathname' | 'param' | 'wildcard'

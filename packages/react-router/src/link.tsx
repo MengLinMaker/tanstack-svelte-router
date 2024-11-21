@@ -5,13 +5,12 @@ import { flushSync } from 'react-dom'
 import { useRouterState } from './useRouterState'
 import { useRouter } from './useRouter'
 import {
-  deepEqual,
-  functionalUpdate,
   useForwardedRef,
   useIntersectionObserver,
   useLayoutEffect,
 } from './utils'
-import { exactPathTest, removeTrailingSlash } from './path'
+import { deepEqual, functionalUpdate } from './core/utils'
+import { exactPathTest, removeTrailingSlash } from './core/path'
 import type { ParsedLocation } from './location'
 import type { HistoryState } from '@tanstack/history'
 import type {
@@ -37,8 +36,9 @@ import type {
   PickRequired,
   Updater,
   WithoutEmpty,
-} from './utils'
+} from './core/utils'
 import type { ReactNode } from 'react'
+import type { IsRequiredParams } from './core/link'
 
 export type CleanPath<T extends string> = T extends `${infer L}//${infer R}`
   ? CleanPath<`${CleanPath<L>}/${CleanPath<R>}`>
@@ -405,9 +405,6 @@ export interface MakeRequiredSearchParams<
 > {
   search: MakeRequiredParamsReducer<TRouter, 'SEARCH', TFrom, TTo> & {}
 }
-
-export type IsRequiredParams<TParams> =
-  Record<never, never> extends TParams ? never : true
 
 export type IsRequired<
   TRouter extends AnyRouter,

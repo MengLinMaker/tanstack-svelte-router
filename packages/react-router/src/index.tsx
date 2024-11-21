@@ -103,7 +103,10 @@ export { matchContext } from './matchContext'
 
 export { Match, Outlet } from './Match'
 
-export { isServerSideError, defaultDeserializeError } from './isServerSideError'
+export {
+  isServerSideError,
+  defaultDeserializeError,
+} from './core/isServerSideError'
 
 export { useMatch } from './useMatch'
 
@@ -123,16 +126,16 @@ export {
   matchPathname,
   removeBasepath,
   matchByPath,
-} from './path'
-export type { Segment } from './path'
+} from './core/path'
+export type { Segment } from './core/path'
 
-export { encode, decode } from './qss'
+export { encode, decode } from './core/qss'
 
 export { redirect, isRedirect } from './redirects'
 export type { AnyRedirect, Redirect, ResolvedRedirect } from './redirects'
 
-export { rootRouteId } from './root'
-export type { RootRouteId } from './root'
+export { rootRouteId } from './core/root'
+export type { RootRouteId } from './core/root'
 
 export {
   RouteApi,
@@ -151,7 +154,6 @@ export type {
   ResolveParams,
   SearchSchemaInput,
   SearchValidatorAdapter,
-  AnySearchSchema,
   AnyContext,
   RouteContext,
   PreloadableObj,
@@ -228,6 +230,7 @@ export type {
   ResolveRouteContext,
   ResolveSearchSchemaFn,
 } from './route'
+export type { AnySearchSchema } from './core/route'
 
 export type {
   ParseRoute,
@@ -300,11 +303,11 @@ export {
   defaultStringifySearch,
   parseSearchWith,
   stringifySearchWith,
-} from './searchParams'
-export type { SearchSerializer, SearchParser } from './searchParams'
+} from './core/searchParams'
+export type { SearchSerializer, SearchParser } from './core/searchParams'
 
-export { defaultTransformer } from './transformer'
-export type { RouterTransformer } from './transformer'
+export { defaultTransformer } from './core/transformer'
+export type { RouterTransformer } from './core/transformer'
 
 export { useBlocker, Block } from './useBlocker'
 
@@ -328,17 +331,20 @@ export { useRouterState } from './useRouterState'
 export { useLocation } from './useLocation'
 
 export {
-  escapeJSON, // SSR
   useLayoutEffect, // SSR
+  useStableCallback,
+} from './utils'
+
+export {
+  escapeJSON, // SSR
   pick,
   functionalUpdate,
   replaceEqualDeep,
   isPlainObject,
   isPlainArray,
   deepEqual,
-  useStableCallback,
   shallow,
-} from './utils'
+} from './core/utils'
 
 export {
   notFound,
@@ -350,7 +356,7 @@ export type { NotFoundError } from './not-found'
 
 export type { Manifest, RouterManagedTag } from './manifest'
 
-export { createControlledPromise } from './utils'
-export type { ControlledPromise } from './utils'
+export { createControlledPromise } from './core/utils'
+export type { ControlledPromise } from './core/utils'
 
-export { retainSearchParams, stripSearchParams } from './searchMiddleware'
+export { retainSearchParams, stripSearchParams } from './core/searchMiddleware'
