@@ -2,7 +2,7 @@ import { useMatch } from './useMatch'
 import type { AnyRoute } from './route'
 import type { AllParams, RouteById, RouteIds } from './routeInfo'
 import type { RegisteredRouter } from './router'
-import type { Constrain, StrictOrFrom } from './utils'
+import type { Constrain, StrictOrFrom } from './core/utils'
 
 export type UseParamsOptions<
   TFrom,

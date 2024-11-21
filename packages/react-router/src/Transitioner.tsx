@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { pick, useLayoutEffect, usePrevious } from './utils'
+import { useLayoutEffect, usePrevious } from './utils'
+import { pick } from './core/utils'
 import { useRouter } from './useRouter'
 import { useRouterState } from './useRouterState'
 import { trimPathRight } from './path'

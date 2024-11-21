@@ -3,7 +3,7 @@ import type { RegisteredRouter } from './router'
 import type { AnyRoute } from './route'
 import type { MakeRouteMatch } from './Matches'
 import type { RouteIds } from './routeInfo'
-import type { Constrain, StrictOrFrom } from './utils'
+import type { Constrain, StrictOrFrom } from './core/utils'
 
 export function useLoaderDeps<
   TRouteTree extends AnyRoute = RegisteredRouter['routeTree'],

@@ -5,12 +5,11 @@ import { flushSync } from 'react-dom'
 import { useRouterState } from './useRouterState'
 import { useRouter } from './useRouter'
 import {
-  deepEqual,
-  functionalUpdate,
   useForwardedRef,
   useIntersectionObserver,
   useLayoutEffect,
 } from './utils'
+import { deepEqual, functionalUpdate } from './core/utils'
 import { exactPathTest, removeTrailingSlash } from './path'
 import type { ParsedLocation } from './location'
 import type { HistoryState } from '@tanstack/history'
@@ -37,7 +36,7 @@ import type {
   PickRequired,
   Updater,
   WithoutEmpty,
-} from './utils'
+} from './core/utils'
 import type { ReactNode } from 'react'
 
 export type CleanPath<T extends string> = T extends `${infer L}//${infer R}`

@@ -1,5 +1,5 @@
-import { deepEqual } from './utils'
-import type { NoInfer, PickOptional } from './utils'
+import { deepEqual } from './core/utils'
+import type { NoInfer, PickOptional } from './core/utils'
 import type { SearchMiddleware } from './route'
 import type { IsRequiredParams } from './link'
 

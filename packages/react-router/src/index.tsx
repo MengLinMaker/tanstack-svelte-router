@@ -328,17 +328,20 @@ export { useRouterState } from './useRouterState'
 export { useLocation } from './useLocation'
 
 export {
-  escapeJSON, // SSR
   useLayoutEffect, // SSR
+  useStableCallback,
+} from './utils'
+
+export {
+  escapeJSON, // SSR
   pick,
   functionalUpdate,
   replaceEqualDeep,
   isPlainObject,
   isPlainArray,
   deepEqual,
-  useStableCallback,
   shallow,
-} from './utils'
+} from './core/utils'
 
 export {
   notFound,
@@ -350,7 +353,7 @@ export type { NotFoundError } from './not-found'
 
 export type { Manifest, RouterManagedTag } from './manifest'
 
-export { createControlledPromise } from './utils'
-export type { ControlledPromise } from './utils'
+export { createControlledPromise } from './core/utils'
+export type { ControlledPromise } from './core/utils'
 
 export { retainSearchParams, stripSearchParams } from './searchMiddleware'

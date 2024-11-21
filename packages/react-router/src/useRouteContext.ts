@@ -3,7 +3,7 @@ import type { MakeRouteMatch } from './Matches'
 import type { AnyRoute } from './route'
 import type { AllContext, RouteById, RouteIds } from './routeInfo'
 import type { RegisteredRouter } from './router'
-import type { Constrain, Expand, StrictOrFrom } from './utils'
+import type { Constrain, Expand, StrictOrFrom } from './core/utils'
 
 export type UseRouteContextOptions<
   TFrom,

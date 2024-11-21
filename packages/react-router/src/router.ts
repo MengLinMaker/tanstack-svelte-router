@@ -15,7 +15,7 @@ import {
   last,
   pick,
   replaceEqualDeep,
-} from './utils'
+} from './core/utils'
 import {
   cleanPath,
   interpolatePath,
@@ -66,7 +66,7 @@ import type {
   NonNullableUpdater,
   PickAsRequired,
   Updater,
-} from './utils'
+} from './core/utils'
 import type {
   AnyRouteMatch,
   MakeRouteMatch,
