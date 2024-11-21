@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { deepEqual, isPlainArray, replaceEqualDeep } from '../src/utils'
+import { deepEqual, isPlainArray, replaceEqualDeep } from '../../src/core/utils'
 
 describe('replaceEqualDeep', () => {
   it('should return the same object if the input objects are equal', () => {
