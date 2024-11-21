@@ -151,7 +151,6 @@ export type {
   ResolveParams,
   SearchSchemaInput,
   SearchValidatorAdapter,
-  AnySearchSchema,
   AnyContext,
   RouteContext,
   PreloadableObj,
@@ -228,6 +227,9 @@ export type {
   ResolveRouteContext,
   ResolveSearchSchemaFn,
 } from './route'
+export type {
+  AnySearchSchema,
+} from './core/route'
 
 export type {
   ParseRoute,

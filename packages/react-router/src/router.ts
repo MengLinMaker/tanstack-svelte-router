@@ -42,7 +42,6 @@ import type {
   AnyContext,
   AnyRoute,
   AnyRouteWithContext,
-  AnySearchSchema,
   AnySearchValidator,
   BeforeLoadContextOptions,
   ErrorRouteComponent,
@@ -54,6 +53,9 @@ import type {
   RouteMask,
   SearchMiddleware,
 } from './route'
+import type {
+  AnySearchSchema,
+} from './core/route'
 import type {
   FullSearchSchema,
   RouteById,
