@@ -123,8 +123,8 @@ export {
   matchPathname,
   removeBasepath,
   matchByPath,
-} from './path'
-export type { Segment } from './path'
+} from './core/path'
+export type { Segment } from './core/path'
 
 export { encode, decode } from './core/qss'
 

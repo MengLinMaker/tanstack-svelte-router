@@ -6,7 +6,7 @@ import {
   removeBasepath,
   removeTrailingSlash,
   resolvePath,
-} from '../src/path'
+} from '../../src/core/path'
 
 describe('removeBasepath', () => {
   it.each([
