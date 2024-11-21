@@ -8,7 +8,7 @@ import { useSearch } from './useSearch'
 import { notFound } from './not-found'
 import { useNavigate } from './useNavigate'
 import { rootRouteId } from './core/root'
-import type * as React from 'react'
+import type * as Svelte from 'svelte'
 import type { RootRouteId } from './core/root'
 import type { UseNavigateResult } from './useNavigate'
 import type {
@@ -368,7 +368,7 @@ export interface UpdatableRouteOptions<
   postSearchFilters?: Array<
     SearchFilter<ResolveFullSearchSchema<TParentRoute, TSearchValidator>>
   >
-  onCatch?: (error: Error, errorInfo: React.ErrorInfo) => void
+  onCatch?: (error: Error) => void
   onError?: (err: any) => void
   // These functions are called as route matches are loaded, stick around and leave the active
   // matches
@@ -453,9 +453,9 @@ export interface UpdatableRouteOptions<
     >
     params: ResolveAllParamsFromParent<TParentRoute, TParams>
     loaderData: ResolveLoaderData<TLoaderFn>
-  }) => Array<React.JSX.IntrinsicElements['meta']>
-  links?: () => Array<React.JSX.IntrinsicElements['link']>
-  scripts?: () => Array<React.JSX.IntrinsicElements['script']>
+  }) => Array<Svelte.Component>
+  links?: () => Array<Svelte.Component>
+  scripts?: () => Array<Svelte.Component>
   headers?: (ctx: {
     loaderData: ResolveLoaderData<TLoaderFn>
   }) => Record<string, string>
@@ -1658,11 +1658,9 @@ export type NotFoundRouteProps = {
 }
 //
 
-export type ReactNode = any
+export type ComponentNode = any
 
-export type SyncRouteComponent<TProps> =
-  | ((props: TProps) => ReactNode)
-  | React.LazyExoticComponent<(props: TProps) => ReactNode>
+export type SyncRouteComponent<TProps> = (props: TProps) => ComponentNode
 
 export type AsyncRouteComponent<TProps> = SyncRouteComponent<TProps> & {
   preload?: () => Promise<void>

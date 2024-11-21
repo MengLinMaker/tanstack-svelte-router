@@ -7,7 +7,8 @@ import { Transitioner } from './Transitioner'
 import { matchContext } from './matchContext'
 import { Match } from './Match'
 import { SafeFragment } from './SafeFragment'
-import type { AnyRoute, ReactNode, StaticDataRouteOption } from './route'
+import type * as Svelte from 'svelte'
+import type { AnyRoute, ComponentNode, StaticDataRouteOption } from './route'
 import type { AnyRouter, RegisteredRouter } from './router'
 import type { ResolveRelativePath, ToOptions } from './link'
 import type {
@@ -166,9 +167,9 @@ export interface RouteMatch<
   loaderDeps: TLoaderDeps
   preload: boolean
   invalid: boolean
-  meta?: Array<React.JSX.IntrinsicElements['meta']>
-  links?: Array<React.JSX.IntrinsicElements['link']>
-  scripts?: Array<React.JSX.IntrinsicElements['script']>
+  meta?: Array<Svelte.Component>
+  links?: Array<Svelte.Component>
+  scripts?: Array<Svelte.Component>
   headers?: Record<string, string>
   globalNotFound?: boolean
   staticData: StaticDataRouteOption
@@ -331,7 +332,7 @@ export type MakeMatchRouteOptions<
           TRouter['routeTree'],
           ResolveRelativePath<TFrom, NoInfer<TTo>>
         >['types']['allParams'],
-      ) => ReactNode)
+      ) => ComponentNode)
     | React.ReactNode
 }
 
