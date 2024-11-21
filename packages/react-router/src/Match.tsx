@@ -10,7 +10,7 @@ import { createControlledPromise, pick } from './core/utils'
 import { CatchNotFound, isNotFound } from './not-found'
 import { isRedirect } from './redirects'
 import { matchContext } from './matchContext'
-import { defaultDeserializeError, isServerSideError } from './isServerSideError'
+import { defaultDeserializeError, isServerSideError } from './core/isServerSideError'
 import { SafeFragment } from './SafeFragment'
 import { renderRouteNotFound } from './renderRouteNotFound'
 import { rootRouteId } from './core/root'
@@ -45,16 +45,16 @@ export const Match = React.memo(function MatchImpl({
 
   const routeNotFoundComponent = route.isRoot
     ? // If it's the root route, use the globalNotFound option, with fallback to the notFoundRoute's component
-      (route.options.notFoundComponent ??
+    (route.options.notFoundComponent ??
       router.options.notFoundRoute?.options.component)
     : route.options.notFoundComponent
 
   const ResolvedSuspenseBoundary =
     // If we're on the root route, allow forcefully wrapping in suspense
     (!route.isRoot || route.options.wrapInSuspense) &&
-    (route.options.wrapInSuspense ??
-      PendingComponent ??
-      (route.options.errorComponent as any)?.preload)
+      (route.options.wrapInSuspense ??
+        PendingComponent ??
+        (route.options.errorComponent as any)?.preload)
       ? React.Suspense
       : SafeFragment
 

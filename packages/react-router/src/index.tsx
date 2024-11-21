@@ -103,7 +103,7 @@ export { matchContext } from './matchContext'
 
 export { Match, Outlet } from './Match'
 
-export { isServerSideError, defaultDeserializeError } from './isServerSideError'
+export { isServerSideError, defaultDeserializeError } from './core/isServerSideError'
 
 export { useMatch } from './useMatch'
 
