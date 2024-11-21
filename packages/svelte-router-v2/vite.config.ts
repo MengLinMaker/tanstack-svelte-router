@@ -1,18 +1,19 @@
 import { defineConfig, mergeConfig } from 'vitest/config'
 import { tanstackViteConfig } from '@tanstack/config/vite'
 import react from '@vitejs/plugin-react'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { svelteTesting } from '@testing-library/svelte/vite'
 import packageJson from './package.json'
-import type { UserConfig } from 'vitest/config'
 
 const config = defineConfig({
-  plugins: [react()] as UserConfig['plugins'],
+  plugins: [react(), svelte(), svelteTesting()],
   test: {
     name: packageJson.name,
     dir: './tests',
     watch: false,
     environment: 'jsdom',
     typecheck: { enabled: true },
-    setupFiles: ['./tests/setupTests.tsx'],
+    setupFiles: ['./tests/setupTests.ts'],
   },
 })
 

@@ -1,7 +1,7 @@
 {
   "name": "@menglinmaker/tanstack-svelte-router",
   "version": "0.0.1",
-  "description": "Modern and scalable routing for React applications",
+  "description": "Modern and scalable routing for Svelte applications",
   "author": "Meng Lin",
   "license": "MIT",
   "repository": {
@@ -70,8 +70,7 @@
     "@testing-library/svelte": "^5.2.4",
     "eslint-plugin-svelte": "2.46.0",
     "svelte": "5.1.15",
-    "svelte-check": "4.0.7",
-    "vite": "link:@sveltejs/kit/vite"
+    "svelte-check": "4.0.7"
   },
   "peerDependencies": {
     "svelte": "^5.0.0"
