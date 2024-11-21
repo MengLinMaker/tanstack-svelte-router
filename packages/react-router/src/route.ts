@@ -7,9 +7,9 @@ import { useParams } from './useParams'
 import { useSearch } from './useSearch'
 import { notFound } from './not-found'
 import { useNavigate } from './useNavigate'
-import { rootRouteId } from './root'
+import { rootRouteId } from './core/root'
 import type * as React from 'react'
-import type { RootRouteId } from './root'
+import type { RootRouteId } from './core/root'
 import type { UseNavigateResult } from './useNavigate'
 import type {
   MakeRouteMatch,

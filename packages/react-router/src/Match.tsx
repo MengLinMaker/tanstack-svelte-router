@@ -13,7 +13,7 @@ import { matchContext } from './matchContext'
 import { defaultDeserializeError, isServerSideError } from './isServerSideError'
 import { SafeFragment } from './SafeFragment'
 import { renderRouteNotFound } from './renderRouteNotFound'
-import { rootRouteId } from './root'
+import { rootRouteId } from './core/root'
 import type { AnyRoute } from './route'
 
 export const Match = React.memo(function MatchImpl({

@@ -6,7 +6,7 @@ import {
 import { Store } from '@tanstack/react-store'
 import invariant from 'tiny-invariant'
 import warning from 'tiny-warning'
-import { rootRouteId } from './root'
+import { rootRouteId } from './core/root'
 import { defaultParseSearch, defaultStringifySearch } from './searchParams'
 import {
   createControlledPromise,
