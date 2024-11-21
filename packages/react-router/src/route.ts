@@ -25,6 +25,7 @@ import type { Assign, Constrain, Expand, NoInfer } from './core/utils'
 import type { BuildLocationFn, NavigateFn } from './RouterProvider'
 import type { NotFoundError } from './not-found'
 import type { LazyRoute } from './fileRoute'
+import type { AnySearchSchema } from './core/route'
 
 export type AnyPathParams = {}
 
@@ -32,23 +33,21 @@ export type SearchSchemaInput = {
   __TSearchSchemaInput__: 'TSearchSchemaInput'
 }
 
-export type AnySearchSchema = {}
-
 export type AnyContext = {}
 
-export interface RouteContext {}
+export interface RouteContext { }
 
 export type PreloadableObj = { preload?: () => Promise<void> }
 
 export type RoutePathOptions<TCustomId, TPath> =
   | {
-      path: TPath
-    }
+    path: TPath
+  }
   | {
-      id: TCustomId
-    }
+    id: TCustomId
+  }
 
-export interface StaticDataRouteOption {}
+export interface StaticDataRouteOption { }
 
 export type RoutePathOptionsIntersection<TCustomId, TPath> = {
   path: TPath
@@ -97,8 +96,8 @@ export type RouteOptions<
 export type ParseSplatParams<TPath extends string> = TPath extends `${string}$`
   ? '_splat'
   : TPath extends `${string}$/${string}`
-    ? '_splat'
-    : never
+  ? '_splat'
+  : never
 
 export interface SplatParams {
   _splat?: string
@@ -106,8 +105,8 @@ export interface SplatParams {
 
 export type ResolveParams<TPath extends string> =
   ParseSplatParams<TPath> extends never
-    ? Record<ParsePathParams<TPath>, string>
-    : Record<ParsePathParams<TPath>, string> & SplatParams
+  ? Record<ParsePathParams<TPath>, string>
+  : Record<ParsePathParams<TPath>, string> & SplatParams
 
 export type ParseParamsFn<TPath extends string, TParams> = (
   rawParams: ResolveParams<TPath>,
@@ -192,18 +191,18 @@ export type FileBaseRouteOptions<
   >
 
   shouldReload?:
-    | boolean
-    | ((
-        match: LoaderFnContext<
-          TParentRoute,
-          TId,
-          TParams,
-          TLoaderDeps,
-          TRouterContext,
-          TRouteContextFn,
-          TBeforeLoadFn
-        >,
-      ) => any)
+  | boolean
+  | ((
+    match: LoaderFnContext<
+      TParentRoute,
+      TId,
+      TParams,
+      TLoaderDeps,
+      TRouterContext,
+      TRouteContextFn,
+      TBeforeLoadFn
+    >,
+  ) => any)
 
   context?: Constrain<
     TRouteContextFn,
@@ -316,7 +315,7 @@ export interface BeforeLoadContextOptions<
   in out TRouterContext,
   in out TRouteContextFn,
 > extends ContextOptions<TParentRoute, TParams>,
-    FullSearchSchemaOption<TParentRoute, TSearchValidator> {
+  FullSearchSchemaOption<TParentRoute, TSearchValidator> {
   context: Expand<
     BeforeLoadContextParameter<TParentRoute, TRouterContext, TRouteContextFn>
   >
@@ -482,7 +481,7 @@ export type MetaDescriptor =
   | { property: string; content: string }
   | { httpEquiv: string; content: string }
   | { 'script:ld+json': LdJsonObject }
-  | { tagName: 'meta' | 'link'; [name: string]: string }
+  | { tagName: 'meta' | 'link';[name: string]: string }
   | Record<string, unknown>
 
 type LdJsonObject = { [Key in string]: LdJsonValue } & {
@@ -608,8 +607,8 @@ export interface LoaderFnContext<
   navigate: (opts: NavigateOptions<AnyRouter>) => Promise<void>
   // root route does not have a parent match
   parentMatchPromise: TId extends RootRouteId
-    ? never
-    : Promise<MakeRouteMatchFromRoute<TParentRoute>>
+  ? never
+  : Promise<MakeRouteMatchFromRoute<TParentRoute>>
   cause: 'preload' | 'enter' | 'stay'
   route: Route
 }
@@ -660,28 +659,28 @@ export type InferAllParams<TRoute> = TRoute extends {
 export type InferAllContext<TRoute> = unknown extends TRoute
   ? TRoute
   : TRoute extends {
-        types: {
-          allContext: infer TAllContext
-        }
-      }
-    ? TAllContext
-    : {}
+    types: {
+      allContext: infer TAllContext
+    }
+  }
+  ? TAllContext
+  : {}
 
 export type ResolveSearchSchemaFnInput<TSearchValidator> =
   TSearchValidator extends (input: infer TSearchSchemaInput) => any
-    ? TSearchSchemaInput extends SearchSchemaInput
-      ? Omit<TSearchSchemaInput, keyof SearchSchemaInput>
-      : ResolveSearchSchemaFn<TSearchValidator>
-    : AnySearchSchema
+  ? TSearchSchemaInput extends SearchSchemaInput
+  ? Omit<TSearchSchemaInput, keyof SearchSchemaInput>
+  : ResolveSearchSchemaFn<TSearchValidator>
+  : AnySearchSchema
 
 export type ResolveSearchSchemaInput<TSearchValidator> =
   TSearchValidator extends AnyStandardSchemaValidator
-    ? NonNullable<TSearchValidator['~types']>['input']
-    : TSearchValidator extends AnySearchValidatorAdapter
-      ? TSearchValidator['types']['input']
-      : TSearchValidator extends AnySearchValidatorObj
-        ? ResolveSearchSchemaFnInput<TSearchValidator['parse']>
-        : ResolveSearchSchemaFnInput<TSearchValidator>
+  ? NonNullable<TSearchValidator['~types']>['input']
+  : TSearchValidator extends AnySearchValidatorAdapter
+  ? TSearchValidator['types']['input']
+  : TSearchValidator extends AnySearchValidatorObj
+  ? ResolveSearchSchemaFnInput<TSearchValidator['parse']>
+  : ResolveSearchSchemaFnInput<TSearchValidator>
 
 export type ResolveSearchSchemaFn<TSearchValidator> = TSearchValidator extends (
   ...args: any
@@ -691,14 +690,14 @@ export type ResolveSearchSchemaFn<TSearchValidator> = TSearchValidator extends (
 
 export type ResolveSearchSchema<TSearchValidator> =
   unknown extends TSearchValidator
-    ? TSearchValidator
-    : TSearchValidator extends AnyStandardSchemaValidator
-      ? NonNullable<TSearchValidator['~types']>['output']
-      : TSearchValidator extends AnySearchValidatorAdapter
-        ? TSearchValidator['types']['output']
-        : TSearchValidator extends AnySearchValidatorObj
-          ? ResolveSearchSchemaFn<TSearchValidator['parse']>
-          : ResolveSearchSchemaFn<TSearchValidator>
+  ? TSearchValidator
+  : TSearchValidator extends AnyStandardSchemaValidator
+  ? NonNullable<TSearchValidator['~types']>['output']
+  : TSearchValidator extends AnySearchValidatorAdapter
+  ? TSearchValidator['types']['output']
+  : TSearchValidator extends AnySearchValidatorObj
+  ? ResolveSearchSchemaFn<TSearchValidator['parse']>
+  : ResolveSearchSchemaFn<TSearchValidator>
 
 export type ResolveFullSearchSchema<
   TParentRoute extends AnyRoute,
@@ -706,9 +705,9 @@ export type ResolveFullSearchSchema<
 > = unknown extends TParentRoute
   ? ResolveSearchSchema<TSearchValidator>
   : Assign<
-      InferFullSearchSchema<TParentRoute>,
-      ResolveSearchSchema<TSearchValidator>
-    >
+    InferFullSearchSchema<TParentRoute>,
+    ResolveSearchSchema<TSearchValidator>
+  >
 
 export type ResolveFullSearchSchemaInput<
   TParentRoute extends AnyRoute,
@@ -728,21 +727,21 @@ export type LooseAsyncReturnType<T> = T extends (
   ...args: Array<any>
 ) => infer TReturn
   ? TReturn extends Promise<infer TReturn>
-    ? TReturn
-    : TReturn
+  ? TReturn
+  : TReturn
   : never
 
 export type ContextReturnType<TContextFn> = unknown extends TContextFn
   ? TContextFn
   : LooseReturnType<TContextFn> extends never
-    ? AnyContext
-    : LooseReturnType<TContextFn>
+  ? AnyContext
+  : LooseReturnType<TContextFn>
 
 export type ContextAsyncReturnType<TContextFn> = unknown extends TContextFn
   ? TContextFn
   : LooseAsyncReturnType<TContextFn> extends never
-    ? AnyContext
-    : LooseAsyncReturnType<TContextFn>
+  ? AnyContext
+  : LooseAsyncReturnType<TContextFn>
 
 export type RouteContextParameter<
   TParentRoute extends AnyRoute,
@@ -777,8 +776,8 @@ export type ResolveAllContext<
 export type ResolveLoaderData<TLoaderFn> = unknown extends TLoaderFn
   ? TLoaderFn
   : LooseAsyncReturnType<TLoaderFn> extends never
-    ? {}
-    : LooseAsyncReturnType<TLoaderFn>
+  ? {}
+  : LooseAsyncReturnType<TLoaderFn>
 
 export interface AnyRoute
   extends Route<
@@ -795,7 +794,7 @@ export interface AnyRoute
     any,
     any,
     any
-  > {}
+  > { }
 
 export type AnyRouteWithContext<TContext> = AnyRoute & {
   types: { allContext: TContext }
@@ -1031,7 +1030,7 @@ export class Route<
       !((options as any)?.id && (options as any)?.path),
       `Route cannot have both an 'id' and a 'path' option.`,
     )
-    ;(this as any).$$typeof = Symbol.for('react.memo')
+      ; (this as any).$$typeof = Symbol.for('react.memo')
   }
 
   types!: {
@@ -1071,20 +1070,20 @@ export class Route<
 
     const options = this.options as
       | (RouteOptions<
-          TParentRoute,
-          TId,
-          TCustomId,
-          TFullPath,
-          TPath,
-          TSearchValidator,
-          TParams,
-          TLoaderDeps,
-          TLoaderFn,
-          TRouterContext,
-          TRouteContextFn,
-          TBeforeLoadFn
-        > &
-          RoutePathOptionsIntersection<TCustomId, TPath>)
+        TParentRoute,
+        TId,
+        TCustomId,
+        TFullPath,
+        TPath,
+        TSearchValidator,
+        TParams,
+        TLoaderDeps,
+        TLoaderFn,
+        TRouterContext,
+        TRouteContextFn,
+        TBeforeLoadFn
+      > &
+        RoutePathOptionsIntersection<TCustomId, TPath>)
       | undefined
 
     const isRoot = !options?.path && !options?.id
@@ -1114,9 +1113,9 @@ export class Route<
     let id = isRoot
       ? rootRouteId
       : joinPaths([
-          this.parentRoute.id === rootRouteId ? '' : this.parentRoute.id,
-          customId,
-        ])
+        this.parentRoute.id === rootRouteId ? '' : this.parentRoute.id,
+        customId,
+      ])
 
     if (path === rootRouteId) {
       path = '/'
@@ -1139,8 +1138,8 @@ export class Route<
 
   addChildren<
     const TNewChildren extends
-      | Record<string, AnyRoute>
-      | ReadonlyArray<AnyRoute>,
+    | Record<string, AnyRoute>
+    | ReadonlyArray<AnyRoute>,
   >(
     children: TNewChildren,
   ): Route<
@@ -1495,8 +1494,8 @@ export class RootRoute<
 
   addChildren<
     const TNewChildren extends
-      | Record<string, AnyRoute>
-      | ReadonlyArray<AnyRoute>,
+    | Record<string, AnyRoute>
+    | ReadonlyArray<AnyRoute>,
   >(
     children: TNewChildren,
   ): RootRoute<
@@ -1600,14 +1599,14 @@ type RoutePrefix<
 > = string extends TPath
   ? RootRouteId
   : TPath extends string
-    ? TPrefix extends RootRouteId
-      ? TPath extends '/'
-        ? '/'
-        : `/${TrimPath<TPath>}`
-      : `${TPrefix}/${TPath}` extends '/'
-        ? '/'
-        : `/${TrimPathLeft<`${TrimPathRight<TPrefix>}/${TrimPath<TPath>}`>}`
-    : never
+  ? TPrefix extends RootRouteId
+  ? TPath extends '/'
+  ? '/'
+  : `/${TrimPath<TPath>}`
+  : `${TPrefix}/${TPath}` extends '/'
+  ? '/'
+  : `/${TrimPathLeft<`${TrimPathRight<TPrefix>}/${TrimPath<TPath>}`>}`
+  : never
 
 export type TrimPath<T extends string> = '' extends T
   ? ''
@@ -1615,15 +1614,15 @@ export type TrimPath<T extends string> = '' extends T
 
 export type TrimPathLeft<T extends string> =
   T extends `${RootRouteId}/${infer U}`
-    ? TrimPathLeft<U>
-    : T extends `/${infer U}`
-      ? TrimPathLeft<U>
-      : T
+  ? TrimPathLeft<U>
+  : T extends `/${infer U}`
+  ? TrimPathLeft<U>
+  : T
 export type TrimPathRight<T extends string> = T extends '/'
   ? '/'
   : T extends `${infer U}/`
-    ? TrimPathRight<U>
-    : T
+  ? TrimPathRight<U>
+  : T
 
 export type RouteMask<TRouteTree extends AnyRoute> = {
   routeTree: TRouteTree

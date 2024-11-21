@@ -300,8 +300,8 @@ export {
   defaultStringifySearch,
   parseSearchWith,
   stringifySearchWith,
-} from './searchParams'
-export type { SearchSerializer, SearchParser } from './searchParams'
+} from './core/searchParams'
+export type { SearchSerializer, SearchParser } from './core/searchParams'
 
 export { defaultTransformer } from './transformer'
 export type { RouterTransformer } from './transformer'
