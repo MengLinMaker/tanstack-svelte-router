@@ -34,9 +34,9 @@
     "_test:types:ts55": "node ../../node_modules/typescript55/lib/tsc.js -p tsconfig.legacy.json",
     "_test:types:ts56": "tsc -p tsconfig.legacy.json",
     "_test:unit": "vitest",
-    "_test:unit:dev": "pnpm run _test:unit --watch --hideSkipped_tests",
+    "_test:unit:dev": "pnpm run _test:unit --watch --hideSkippedtests",
     "_test:perf": "vitest bench",
-    "_test:perf:dev": "pnpm run _test:perf --watch --hideSkipped_tests",
+    "_test:perf:dev": "pnpm run _test:perf --watch --hideSkippedtests",
     "_test:build": "publint --strict && attw --ignore-rules no-resolution --pack .",
     "build": "vite build"
   },
