@@ -9,7 +9,6 @@
     "tests",
     "vite.config.ts",
     "eslint.config.ts",
-    "../start/src/client/DehydrateRouter.tsx",
     "svelte.config.js",
   ]
 }
