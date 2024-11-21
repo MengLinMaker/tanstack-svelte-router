@@ -358,4 +358,4 @@ export type { Manifest, RouterManagedTag } from './manifest'
 export { createControlledPromise } from './core/utils'
 export type { ControlledPromise } from './core/utils'
 
-export { retainSearchParams, stripSearchParams } from './searchMiddleware'
+export { retainSearchParams, stripSearchParams } from './core/searchMiddleware'

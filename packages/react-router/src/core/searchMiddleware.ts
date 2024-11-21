@@ -1,5 +1,5 @@
-import { deepEqual } from './core/utils'
-import type { NoInfer, PickOptional } from './core/utils'
+import { deepEqual } from './utils'
+import type { NoInfer, PickOptional } from './utils'
 import type { SearchMiddleware } from './route'
 import type { IsRequiredParams } from './link'
 
@@ -25,11 +25,11 @@ export function stripSearchParams<
   TSearchSchema,
   TOptionalProps = PickOptional<NoInfer<TSearchSchema>>,
   const TValues =
-    | Partial<NoInfer<TOptionalProps>>
-    | Array<keyof TOptionalProps>,
+  | Partial<NoInfer<TOptionalProps>>
+  | Array<keyof TOptionalProps>,
   const TInput = IsRequiredParams<TSearchSchema> extends never
-    ? TValues | true
-    : TValues,
+  ? TValues | true
+  : TValues,
 >(input: NoInfer<TInput>): SearchMiddleware<TSearchSchema> {
   return ({ search, next }) => {
     if (input === true) {

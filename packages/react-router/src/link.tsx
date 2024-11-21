@@ -38,6 +38,7 @@ import type {
   WithoutEmpty,
 } from './core/utils'
 import type { ReactNode } from 'react'
+import type { IsRequiredParams } from './core/link'
 
 export type CleanPath<T extends string> = T extends `${infer L}//${infer R}`
   ? CleanPath<`${CleanPath<L>}/${CleanPath<R>}`>
@@ -404,9 +405,6 @@ export interface MakeRequiredSearchParams<
 > {
   search: MakeRequiredParamsReducer<TRouter, 'SEARCH', TFrom, TTo> & {}
 }
-
-export type IsRequiredParams<TParams> =
-  Record<never, never> extends TParams ? never : true
 
 export type IsRequired<
   TRouter extends AnyRouter,

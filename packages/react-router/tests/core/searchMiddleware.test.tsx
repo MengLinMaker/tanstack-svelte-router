@@ -9,10 +9,10 @@ import {
   createRouter,
   retainSearchParams,
   stripSearchParams,
-} from '../src'
-import { getSearchParamsFromURI } from './utils'
-import type { AnyRouter } from '../src'
-import type { SearchMiddleware } from '../src/route'
+} from '../../src'
+import { getSearchParamsFromURI } from '../utils'
+import type { AnyRouter } from '../../src'
+import type { SearchMiddleware } from '../../src/core/route'
 
 afterEach(() => {
   vi.resetAllMocks()

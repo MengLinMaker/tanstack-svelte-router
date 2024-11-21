@@ -51,10 +51,10 @@ import type {
   RouteComponent,
   RouteContextOptions,
   RouteMask,
-  SearchMiddleware,
 } from './route'
 import type {
   AnySearchSchema,
+  SearchMiddleware,
 } from './core/route'
 import type {
   FullSearchSchema,

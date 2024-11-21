@@ -25,7 +25,7 @@ import type { Assign, Constrain, Expand, NoInfer } from './core/utils'
 import type { BuildLocationFn, NavigateFn } from './RouterProvider'
 import type { NotFoundError } from './not-found'
 import type { LazyRoute } from './fileRoute'
-import type { AnySearchSchema } from './core/route'
+import type { AnySearchSchema, SearchMiddleware } from './core/route'
 
 export type AnyPathParams = {}
 
@@ -614,15 +614,6 @@ export interface LoaderFnContext<
 }
 
 export type SearchFilter<TInput, TResult = TInput> = (prev: TInput) => TResult
-
-export type SearchMiddlewareContext<TSearchSchema> = {
-  search: TSearchSchema
-  next: (newSearch: TSearchSchema) => TSearchSchema
-}
-
-export type SearchMiddleware<TSearchSchema> = (
-  ctx: SearchMiddlewareContext<TSearchSchema>,
-) => TSearchSchema
 
 export type ResolveId<
   TParentRoute,
