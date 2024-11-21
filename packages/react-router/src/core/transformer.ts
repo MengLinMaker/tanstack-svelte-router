@@ -1,4 +1,4 @@
-import { isPlainObject } from './core/utils'
+import { isPlainObject } from './utils'
 
 export interface RouterTransformer {
   stringify: (obj: unknown) => string

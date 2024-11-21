@@ -29,7 +29,7 @@ import {
 } from './core/path'
 import { isRedirect, isResolvedRedirect } from './redirects'
 import { isNotFound } from './not-found'
-import { defaultTransformer } from './transformer'
+import { defaultTransformer } from './core/transformer'
 import type * as React from 'react'
 import type {
   HistoryLocation,
@@ -85,7 +85,7 @@ import type {
 import type { AnyRedirect, ResolvedRedirect } from './redirects'
 import type { NotFoundError } from './not-found'
 import type { NavigateOptions, ResolveRelativePath, ToOptions } from './link'
-import type { RouterTransformer } from './transformer'
+import type { RouterTransformer } from './core/transformer'
 
 declare global {
   interface Window {

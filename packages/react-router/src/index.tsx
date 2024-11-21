@@ -305,8 +305,8 @@ export {
 } from './core/searchParams'
 export type { SearchSerializer, SearchParser } from './core/searchParams'
 
-export { defaultTransformer } from './transformer'
-export type { RouterTransformer } from './transformer'
+export { defaultTransformer } from './core/transformer'
+export type { RouterTransformer } from './core/transformer'
 
 export { useBlocker, Block } from './useBlocker'
 
