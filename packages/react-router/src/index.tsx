@@ -103,7 +103,10 @@ export { matchContext } from './matchContext'
 
 export { Match, Outlet } from './Match'
 
-export { isServerSideError, defaultDeserializeError } from './core/isServerSideError'
+export {
+  isServerSideError,
+  defaultDeserializeError,
+} from './core/isServerSideError'
 
 export { useMatch } from './useMatch'
 
@@ -227,9 +230,7 @@ export type {
   ResolveRouteContext,
   ResolveSearchSchemaFn,
 } from './route'
-export type {
-  AnySearchSchema,
-} from './core/route'
+export type { AnySearchSchema } from './core/route'
 
 export type {
   ParseRoute,

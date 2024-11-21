@@ -25,11 +25,11 @@ export function stripSearchParams<
   TSearchSchema,
   TOptionalProps = PickOptional<NoInfer<TSearchSchema>>,
   const TValues =
-  | Partial<NoInfer<TOptionalProps>>
-  | Array<keyof TOptionalProps>,
+    | Partial<NoInfer<TOptionalProps>>
+    | Array<keyof TOptionalProps>,
   const TInput = IsRequiredParams<TSearchSchema> extends never
-  ? TValues | true
-  : TValues,
+    ? TValues | true
+    : TValues,
 >(input: NoInfer<TInput>): SearchMiddleware<TSearchSchema> {
   return ({ search, next }) => {
     if (input === true) {

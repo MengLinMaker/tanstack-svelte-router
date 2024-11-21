@@ -52,10 +52,7 @@ import type {
   RouteContextOptions,
   RouteMask,
 } from './route'
-import type {
-  AnySearchSchema,
-  SearchMiddleware,
-} from './core/route'
+import type { AnySearchSchema, SearchMiddleware } from './core/route'
 import type {
   FullSearchSchema,
   RouteById,
@@ -144,8 +141,8 @@ export type InferRouterContext<TRouteTree extends AnyRoute> =
     any,
     any
   >
-  ? TRouterContext
-  : AnyContext
+    ? TRouterContext
+    : AnyContext
 
 export type ExtractedEntry = {
   dataType: '__beforeLoadContext' | 'loaderData'
@@ -163,12 +160,12 @@ export type StreamState = {
 
 export type RouterContextOptions<TRouteTree extends AnyRoute> =
   AnyContext extends InferRouterContext<TRouteTree>
-  ? {
-    context?: InferRouterContext<TRouteTree>
-  }
-  : {
-    context: InferRouterContext<TRouteTree>
-  }
+    ? {
+        context?: InferRouterContext<TRouteTree>
+      }
+    : {
+        context: InferRouterContext<TRouteTree>
+      }
 
 export type TrailingSlashOption = 'always' | 'never' | 'preserve'
 
@@ -644,11 +641,11 @@ export function createRouter<
   options: undefined extends number
     ? 'strictNullChecks must be enabled in tsconfig.json'
     : RouterConstructorOptions<
-      TRouteTree,
-      TTrailingSlashOption,
-      TDehydrated,
-      TSerializedError
-    >,
+        TRouteTree,
+        TTrailingSlashOption,
+        TDehydrated,
+        TSerializedError
+      >,
 ) {
   return new Router<
     TRouteTree,
@@ -749,7 +746,7 @@ export class Router<
     })
 
     if (typeof document !== 'undefined') {
-      ; (window as any).__TSR__ROUTER__ = this
+      ;(window as any).__TSR__ROUTER__ = this
     }
   }
 
@@ -782,11 +779,11 @@ export class Router<
 
     this.pathParamsDecodeCharMap = this.options.pathParamsAllowedCharacters
       ? new Map(
-        this.options.pathParamsAllowedCharacters.map((char) => [
-          encodeURIComponent(char),
-          char,
-        ]),
-      )
+          this.options.pathParamsAllowedCharacters.map((char) => [
+            encodeURIComponent(char),
+            char,
+          ]),
+        )
       : undefined
 
     if (
@@ -813,8 +810,8 @@ export class Router<
         this.options.history ??
         (this.isServer
           ? createMemoryHistory({
-            initialEntries: [this.basepath || '/'],
-          })
+              initialEntries: [this.basepath || '/'],
+            })
           : createBrowserHistory())
       this.latestLocation = this.parseLocation()
     }
@@ -853,7 +850,7 @@ export class Router<
         originalIndex: 99999999999,
         defaultSsr: this.options.defaultSsr,
       })
-        ; (this.routesById as any)[notFoundRoute.id] = notFoundRoute
+      ;(this.routesById as any)[notFoundRoute.id] = notFoundRoute
     }
 
     const recurseRoutes = (childRoutes: Array<AnyRoute>) => {
@@ -869,7 +866,7 @@ export class Router<
           !existingRoute,
           `Duplicate routes found with id: ${String(childRoute.id)}`,
         )
-          ; (this.routesById as any)[childRoute.id] = childRoute
+        ;(this.routesById as any)[childRoute.id] = childRoute
 
         if (!childRoute.isRoot && childRoute.path) {
           const trimmedFullPath = trimPathRight(childRoute.fullPath)
@@ -877,7 +874,7 @@ export class Router<
             !(this.routesByPath as any)[trimmedFullPath] ||
             childRoute.fullPath.endsWith('/')
           ) {
-            ; (this.routesByPath as any)[trimmedFullPath] = childRoute
+            ;(this.routesByPath as any)[trimmedFullPath] = childRoute
           }
         }
 
@@ -1098,7 +1095,7 @@ export class Router<
       foundRoute
         ? foundRoute.path !== '/' && routeParams['**']
         : // Or if we didn't find a route and we have left over path
-        trimPathRight(next.pathname)
+          trimPathRight(next.pathname)
     ) {
       // If the user has defined an (old) 404 route, use it
       if (this.options.notFoundRoute) {
@@ -1242,9 +1239,9 @@ export class Router<
       } else {
         const status =
           route.options.loader ||
-            route.options.beforeLoad ||
-            route.lazyFn ||
-            routeNeedsPreload(route)
+          route.options.beforeLoad ||
+          route.lazyFn ||
+          routeNeedsPreload(route)
             ? 'pending'
             : 'success'
 
@@ -1422,12 +1419,12 @@ export class Router<
       const fromMatch =
         dest.from != null
           ? fromMatches.find((d) =>
-            matchPathname(this.basepath, trimPathRight(d.pathname), {
-              to: dest.from,
-              caseSensitive: false,
-              fuzzy: false,
-            }),
-          )
+              matchPathname(this.basepath, trimPathRight(d.pathname), {
+                to: dest.from,
+                caseSensitive: false,
+                fuzzy: false,
+              }),
+            )
           : undefined
 
       const fromPath = fromMatch?.pathname || this.latestLocation.pathname
@@ -1450,15 +1447,15 @@ export class Router<
       } else {
         const fromRouteByFromPathRouteId =
           this.routesById[
-          stayingMatches?.find((route) => {
-            const interpolatedPath = interpolatePath({
-              path: route.fullPath,
-              params: matchedRoutesResult?.routeParams ?? {},
-              decodeCharMap: this.pathParamsDecodeCharMap,
-            })
-            const pathname = joinPaths([this.basepath, interpolatedPath])
-            return pathname === fromPath
-          })?.id as keyof this['routesById']
+            stayingMatches?.find((route) => {
+              const interpolatedPath = interpolatePath({
+                path: route.fullPath,
+                params: matchedRoutesResult?.routeParams ?? {},
+                decodeCharMap: this.pathParamsDecodeCharMap,
+              })
+              const pathname = joinPaths([this.basepath, interpolatedPath])
+              return pathname === fromPath
+            })?.id as keyof this['routesById']
           ]
         pathname = this.resolvePathWithBase(
           fromPath,
@@ -1805,7 +1802,7 @@ export class Router<
     try {
       new URL(`${toString}`)
       isExternal = true
-    } catch (e) { }
+    } catch (e) {}
 
     invariant(
       !isExternal,
@@ -1926,18 +1923,18 @@ export class Router<
                   this.clearExpiredCache()
                 })
 
-                  //
-                  ; (
-                    [
-                      [exitingMatches, 'onLeave'],
-                      [enteringMatches, 'onEnter'],
-                      [stayingMatches, 'onStay'],
-                    ] as const
-                  ).forEach(([matches, hook]) => {
-                    matches.forEach((match) => {
-                      this.looseRoutesById[match.routeId]!.options[hook]?.(match)
-                    })
+                //
+                ;(
+                  [
+                    [exitingMatches, 'onLeave'],
+                    [enteringMatches, 'onEnter'],
+                    [stayingMatches, 'onStay'],
+                  ] as const
+                ).forEach(([matches, hook]) => {
+                  matches.forEach((match) => {
+                    this.looseRoutesById[match.routeId]!.options[hook]?.(match)
                   })
+                })
               })
             },
           })
@@ -2091,7 +2088,7 @@ export class Router<
         }))
 
         if (!(err as any).routeId) {
-          ; (err as any).routeId = match.routeId
+          ;(err as any).routeId = match.routeId
         }
 
         match.beforeLoadPromise?.resolve()
@@ -2113,7 +2110,7 @@ export class Router<
 
     try {
       await new Promise<void>((resolveAll, rejectAll) => {
-        ; (async () => {
+        ;(async () => {
           try {
             const handleSerialError = (
               index: number,
@@ -2189,7 +2186,7 @@ export class Router<
                       // Update the match and prematurely resolve the loadMatches promise so that
                       // the pending component can start rendering
                       triggerOnReady()
-                    } catch { }
+                    } catch {}
                   }, pendingMs)
                 }
 
@@ -2218,7 +2215,7 @@ export class Router<
                         // Update the match and prematurely resolve the loadMatches promise so that
                         // the pending component can start rendering
                         triggerOnReady()
-                      } catch { }
+                      } catch {}
                     }, pendingMs)
                   }
 
@@ -2534,7 +2531,7 @@ export class Router<
                     if (preload && route.options.preload === false) {
                       // Do nothing
                     } else if (loaderRunningAsync) {
-                      ; (async () => {
+                      ;(async () => {
                         try {
                           await runLoader()
                         } catch (err) {
@@ -2758,9 +2755,9 @@ export class Router<
       ...location,
       to: location.to
         ? this.resolvePathWithBase(
-          (location.from || '') as string,
-          location.to as string,
-        )
+            (location.from || '') as string,
+            location.to as string,
+          )
         : undefined,
       params: location.params || {},
       leaveParams: true,
@@ -2814,9 +2811,9 @@ export class Router<
             // send a small subset of the error to the client
             error: d.error
               ? {
-                data: pickError(d.error),
-                __isServerError: true,
-              }
+                  data: pickError(d.error),
+                  __isServerError: true,
+                }
               : undefined,
             // NOTE: We don't send the loader data here, because
             // there is a potential that it needs to be streamed.
@@ -2911,10 +2908,11 @@ export class Router<
     const children = `__TSR__.streamedValues['${key}'] = { value: ${this.serializer?.(this.options.transformer.stringify(value))}}`
 
     this.injectHtml(
-      `<script class='tsr-once'>${children}${process.env.NODE_ENV === 'development'
-        ? `; console.info(\`Injected From Server:
+      `<script class='tsr-once'>${children}${
+        process.env.NODE_ENV === 'development'
+          ? `; console.info(\`Injected From Server:
         ${children}\`)`
-        : ''
+          : ''
       }; __TSR__.cleanScripts()</script>`,
     )
   }
@@ -2999,9 +2997,9 @@ export function lazyFn<
   }
 }
 
-export class SearchParamError extends Error { }
+export class SearchParamError extends Error {}
 
-export class PathParamError extends Error { }
+export class PathParamError extends Error {}
 
 export function getInitialRouterState(
   location: ParsedLocation,
@@ -3028,7 +3026,7 @@ export function defaultSerializeError(err: unknown) {
     }
 
     if (process.env.NODE_ENV === 'development') {
-      ; (obj as any).stack = err.stack
+      ;(obj as any).stack = err.stack
     }
 
     return obj
