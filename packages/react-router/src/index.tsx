@@ -126,7 +126,7 @@ export {
 } from './path'
 export type { Segment } from './path'
 
-export { encode, decode } from './qss'
+export { encode, decode } from './core/qss'
 
 export { redirect, isRedirect } from './redirects'
 export type { AnyRedirect, Redirect, ResolvedRedirect } from './redirects'
