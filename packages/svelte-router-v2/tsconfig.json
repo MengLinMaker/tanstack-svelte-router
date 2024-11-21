@@ -9,6 +9,6 @@
     "tests",
     "vite.config.ts",
     "eslint.config.ts",
-    "svelte.config.js",
+    "svelte.config.js"
   ]
 }
