@@ -184,7 +184,7 @@ export type {
   ErrorRouteProps,
   ErrorComponentProps,
   NotFoundRouteProps,
-  ReactNode,
+  ComponentNode,
   SyncRouteComponent,
   AsyncRouteComponent,
   RouteComponent,

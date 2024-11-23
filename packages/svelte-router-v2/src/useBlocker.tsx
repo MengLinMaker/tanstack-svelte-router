@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useRouter } from './useRouter'
 import type { BlockerFn } from '@tanstack/history'
-import type { ReactNode } from './route'
+import type { ComponentNode } from './route'
 
 type BlockerResolver = {
   status: 'idle' | 'blocked'
@@ -88,5 +88,7 @@ export function Block({ blockerFn, condition, children }: PromptProps) {
 export type PromptProps = {
   blockerFn?: BlockerFn
   condition?: boolean | any
-  children?: ReactNode | (({ proceed, reset }: BlockerResolver) => ReactNode)
+  children?:
+    | ComponentNode
+    | (({ proceed, reset }: BlockerResolver) => ComponentNode)
 }
