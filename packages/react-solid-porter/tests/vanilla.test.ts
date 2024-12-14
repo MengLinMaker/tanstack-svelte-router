@@ -10,7 +10,7 @@ export const portReactSolid = (code: string) => {
   return transform
 }
 
-describe('portReactSolid', () => {
+describe('vanilla', () => {
   test('No change typescript', () => {
     const code = `const a: any = 1;
 const b: number = 2;
