@@ -155,7 +155,16 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
       },
 
       CallExpression: (path) => {
-        // `render` from testing library - different API in `solid`
+        // render(<Component />)
+        // render(() => <Component />)
+        if (
+          path.node.callee.loc?.identifierName === 'render' &&
+          t.isJSXElement(path.node.arguments[0])
+        ) {
+          path.node.arguments = [
+            t.arrowFunctionExpression([], path.node.arguments[0], false),
+          ]
+        }
       },
     },
   }
@@ -164,7 +173,7 @@ export default plugin
 
 export const portReactToSolid = (code: string) => {
   const transform = transformSync(code, {
-    plugins: ['@babel/plugin-syntax-typescript', plugin],
+    plugins: [['@babel/plugin-syntax-typescript', { isTSX: true }], plugin],
   })
   if (transform === null) throw Error('cannot parse code')
   return transform.code
