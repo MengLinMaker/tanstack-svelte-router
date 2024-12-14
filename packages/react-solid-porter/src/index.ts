@@ -1,3 +1,4 @@
+import { transformSync } from '@babel/core'
 import type Babel from '@babel/core'
 
 // TODO: remove code
@@ -45,13 +46,15 @@ export const memberIndentifiers = new Map(
   }),
 )
 
-export default function ({ types: t }: typeof Babel): Babel.PluginObj<any> {
+const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
   const state: {
     importNamespaceReact: null | string
     importSpecifierReact: Set<string>
+    importSpecifierTestingLibrary: Set<string>
   } = {
     importNamespaceReact: null,
     importSpecifierReact: new Set(),
+    importSpecifierTestingLibrary: new Set(),
   }
   return {
     visitor: {
@@ -76,6 +79,24 @@ export default function ({ types: t }: typeof Babel): Babel.PluginObj<any> {
               state.importSpecifierReact.add(specifier.local.name)
             }
           }
+        } else if (path.node.source.value === '@testing-library/react') {
+          // import ... "@testing-library/react"
+          // import ... "@solidjs/testing-library"
+          path.node.source.value = '@solidjs/testing-library'
+          if (
+            path.node.specifiers[0] &&
+            (t.isImportNamespaceSpecifier(path.node.specifiers[0]) ||
+              t.isImportDefaultSpecifier(path.node.specifiers[0]))
+          ) {
+            const loc = path.node.loc
+            throw Error(
+              `Testing library namespace and default specifier unsupported: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
+            )
+          } else {
+            for (const specifier of path.node.specifiers) {
+              state.importSpecifierTestingLibrary.add(specifier.local.name)
+            }
+          }
         }
       },
 
@@ -88,11 +109,9 @@ export default function ({ types: t }: typeof Babel): Babel.PluginObj<any> {
         ) {
           // @ts-expect-error
           path.node.object.name = 'Solid'
-          // @ts-expect-error - Check if members need replacing
-
-          // TODO: recursive build name
 
           const newMemberIdentifier = memberIndentifiers.get(
+            // @ts-expect-error - Check if members need replacing
             path.node.property.loc?.identifierName,
           )
           // @ts-expect-error
@@ -100,7 +119,7 @@ export default function ({ types: t }: typeof Babel): Babel.PluginObj<any> {
           else {
             const loc = path.node.property.loc
             console.warn(
-              `Member not ported: ${loc?.start.line}:${loc?.start.column} ${loc?.identifierName}`,
+              `Member ported via hacky workaround: ${loc?.start.line}:${loc?.start.column} ${loc?.identifierName}`,
             )
           }
         }
@@ -128,12 +147,25 @@ export default function ({ types: t }: typeof Babel): Babel.PluginObj<any> {
             path.node.typeName = currentNode
           } else {
             const loc = path.node.loc
-            console.warn(
+            throw Error(
               `Type member not ported: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
             )
           }
         }
       },
+
+      CallExpression: (path) => {
+        // `render` from testing library - different API in `solid`
+      },
     },
   }
+}
+export default plugin
+
+export const portReactToSolid = (code: string) => {
+  const transform = transformSync(code, {
+    plugins: ['@babel/plugin-syntax-typescript', plugin],
+  })
+  if (transform === null) throw Error('cannot parse code')
+  return transform.code
 }

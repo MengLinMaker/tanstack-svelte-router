@@ -1,14 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { transformSync } from '@babel/core'
-import plugin, { memberIndentifiers } from '../src'
-
-export const portReactSolid = (code: string) => {
-  const transform = transformSync(code, {
-    plugins: ['@babel/plugin-syntax-typescript', plugin],
-  })
-  if (transform === null) throw Error('cannot parse code')
-  return transform
-}
+import { memberIndentifiers, portReactToSolid } from '../src'
 
 describe('member complex', () => {
   test.each(Array.from(memberIndentifiers.entries()))(
@@ -17,8 +8,8 @@ describe('member complex', () => {
       const code = `import * as React from "react"; React.${oldMember};`
       const expectedCode = `import * as Solid from "solid-js";
 Solid.${newMember};`
-      const newCode = portReactSolid(code)
-      expect(newCode.code).toBe(expectedCode)
+      const newCode = portReactToSolid(code)
+      expect(newCode).toBe(expectedCode)
     },
   )
 })
@@ -30,8 +21,8 @@ describe('member type complex', () => {
       const code = `import * as React from "react"; let a: React.${oldMember};`
       const expectedCode = `import * as Solid from "solid-js";
 let a: Solid.${newMember};`
-      const newCode = portReactSolid(code)
-      expect(newCode.code).toBe(expectedCode)
+      const newCode = portReactToSolid(code)
+      expect(newCode).toBe(expectedCode)
     },
   )
 })
