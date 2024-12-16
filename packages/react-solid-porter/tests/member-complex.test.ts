@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import { memberIndentifiers, portReactToSolid } from '../src'
+import { portReactToSolid } from '../src'
+import { memberIndentifiers } from '../src/memberIdentifiers'
 
 describe('member complex', () => {
   test.each(Array.from(memberIndentifiers.entries()))(

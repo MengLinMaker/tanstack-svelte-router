@@ -1,50 +1,14 @@
 import { transformSync } from '@babel/core'
+import { memberIndentifiers } from './memberIdentifiers'
 import type Babel from '@babel/core'
 
-// TODO: remove code
+// TODO: port code
 // useRef
 // forwardedRef
-// RefObject
-// useCallback
 // useTransition
 // ErrorInfo
-// Fragment
 // act
-
-export const memberIndentifiers = new Map(
-  Object.entries({
-    // Unchanged
-    createContext: 'createContext',
-    useContext: 'useContext',
-    'JSX.IntrinsicElements': 'JSX.IntrinsicElements',
-    Context: 'Context',
-    Suspense: 'Suspense',
-    'JSX.Element': 'JSX.Element',
-
-    // Changed
-    RefAttributes: 'JSX.HTMLAttributes',
-    ComponentPropsWithRef: 'ComponentProps',
-    ReactNode: 'JSX.Element',
-    createElement: 'createComponent',
-    useState: 'createSignal',
-    HTMLProps: 'JSX.HTMLAttributes',
-    useLayoutEffect: 'createEffect',
-    useEffect: 'createEffect',
-    ReactElement: 'Component',
-    useMemo: 'createMemo',
-    PropsWithoutRef: 'ComponentProps',
-    HTMLAttributes: 'JSX.HTMLAttributes',
-    ComponentType: 'Component',
-    FC: 'Component',
-    Component: 'Component',
-    LazyExoticComponent: 'JSX.Component',
-    memo: 'createMemo',
-    PropsWithChildren: 'ParentProps',
-
-    // Unsupported
-    // useSyncExternalStore: '',
-  }),
-)
+// useSyncExternalStore
 
 const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
   const state: {
@@ -59,10 +23,10 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
   return {
     visitor: {
       ImportDeclaration: (path) => {
-        if (path.node.source.value === 'react') {
+        if (t.isStringLiteral(path.node.source, { value: 'react' })) {
           // import ... "react"
           // import ... "solid-js"
-          path.node.source.value = 'solid-js'
+          path.node.source = t.stringLiteral('solid-js')
           if (
             path.node.specifiers[0] &&
             (t.isImportNamespaceSpecifier(path.node.specifiers[0]) ||
@@ -79,10 +43,14 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
               state.importSpecifierReact.add(specifier.local.name)
             }
           }
-        } else if (path.node.source.value === '@testing-library/react') {
+        } else if (
+          t.isStringLiteral(path.node.source, {
+            value: '@testing-library/react',
+          })
+        ) {
           // import ... "@testing-library/react"
           // import ... "@solidjs/testing-library"
-          path.node.source.value = '@solidjs/testing-library'
+          path.node.source = t.stringLiteral('@solidjs/testing-library')
           if (
             path.node.specifiers[0] &&
             (t.isImportNamespaceSpecifier(path.node.specifiers[0]) ||
@@ -105,17 +73,15 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
         // Solid.Element
         if (
           state.importNamespaceReact &&
-          path.node.object.loc?.identifierName === state.importNamespaceReact
+          t.isIdentifier(path.node.object, { name: state.importNamespaceReact })
         ) {
-          // @ts-expect-error
-          path.node.object.name = 'Solid'
+          path.node.object = t.identifier('Solid')
 
           const newMemberIdentifier = memberIndentifiers.get(
-            // @ts-expect-error - Check if members need replacing
-            path.node.property.loc?.identifierName,
+            path.get('property').getSource(),
           )
-          // @ts-expect-error
-          if (newMemberIdentifier) path.node.property.name = newMemberIdentifier
+          if (newMemberIdentifier)
+            path.node.property = t.identifier(newMemberIdentifier)
           else {
             const loc = path.node.property.loc
             console.warn(
@@ -126,8 +92,14 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
       },
 
       TSTypeReference: (path) => {
-        // variable: React.JSX.Element
-        // variable: Solid.JSX.Element
+        // RefObject<T>
+        // T
+        if (path.getSource().slice(0, 15) === 'React.RefObject') {
+          path.replaceWith(path.node.typeParameters!.params[0]!)
+        }
+
+        // type: React.JSX.Element
+        // type: Solid.JSX.Element
         const splitType = path.getSource().split('.')
         if (splitType[0] === state.importNamespaceReact) {
           const member = splitType.slice(1, splitType.length).join('.')
@@ -155,26 +127,80 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
       },
 
       CallExpression: (path) => {
+        // React.useCallback(() => {})
+        // () => {}
+        if (path.getSource().slice(0, 17) === 'React.useCallback') {
+          path.replaceWith(path.node.arguments[0]!)
+        }
+
         // render(<Component />)
         // render(() => <Component />)
         if (
-          path.node.callee.loc?.identifierName === 'render' &&
+          t.isIdentifier(path.node.callee, { name: 'render' }) &&
           t.isJSXElement(path.node.arguments[0])
         ) {
           path.node.arguments = [
             t.arrowFunctionExpression([], path.node.arguments[0], false),
           ]
         }
+
+        // React.forwardRef((props, ref) => <div ref={ref} />);
+        // props => <div ref={props.ref} />);
+        if (path.getSource().slice(0, 16) === 'React.forwardRef') {
+          const forwardRefFunc = path.node.arguments[0]
+          if (
+            t.isArrowFunctionExpression(forwardRefFunc) ||
+            t.isFunctionExpression(forwardRefFunc)
+          ) {
+            const props = forwardRefFunc.params[0]! as Babel.types.Identifier
+            const ref = forwardRefFunc.params[1]! as Babel.types.Identifier
+            // Replace `ref` with `props.ref`
+            path.traverse({
+              JSXExpressionContainer: (path) => {
+                if (
+                  t.isIdentifier(path.node.expression, {
+                    name: ref.loc!.identifierName!,
+                  })
+                ) {
+                  path.replaceWith(
+                    t.jsxExpressionContainer(t.memberExpression(props, ref)),
+                  )
+                }
+              },
+            })
+            path.replaceWith(
+              t.arrowFunctionExpression([props], forwardRefFunc.body),
+            )
+          } else {
+            const loc = path.node.loc
+            throw Error(
+              `Unexpected: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
+            )
+          }
+        }
+      },
+
+      JSXElement: (path) => {
+        // <Fragment></Fragment>
+        // <></>
+        if (path.getSource().slice(1, 9) === 'Fragment') {
+          path.replaceWith(
+            t.jSXFragment(
+              t.jSXOpeningFragment(),
+              t.jSXClosingFragment(),
+              path.node.children,
+            ),
+          )
+        }
       },
     },
   }
 }
-export default plugin
 
 export const portReactToSolid = (code: string) => {
   const transform = transformSync(code, {
     plugins: [['@babel/plugin-syntax-typescript', { isTSX: true }], plugin],
   })
-  if (transform === null) throw Error('cannot parse code')
+  if (!transform) throw Error('cannot parse code')
   return transform.code
 }
