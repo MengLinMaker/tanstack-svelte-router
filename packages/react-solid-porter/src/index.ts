@@ -98,7 +98,8 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
         // RefObject<T>
         // T
         if (path.getSource().slice(0, 15) === 'React.RefObject') {
-          return path.replaceWith(path.node.typeParameters!.params[0]!)
+          path.replaceWith(path.node.typeParameters!.params[0]!)
+          return
         }
 
         // React.ForwardedRef<T>
@@ -136,8 +137,15 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
               path.node.typeName = currentNode
             } else {
               const loc = path.node.loc
-              throw console.warn(
-                `TSTypeReference not ported: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
+              path.traverse({
+                Identifier: (path) => {
+                  if (path.node.name === state.importNamespaceReact) {
+                    path.node.name = 'Solid'
+                  }
+                },
+              })
+              console.warn(
+                `TSTypeReference member preserved: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
               )
             }
           }
@@ -229,6 +237,7 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
 export const portReactToSolid = (code: string) => {
   const transform = transformSync(code, {
     plugins: [['@babel/plugin-syntax-typescript', { isTSX: true }], plugin],
+    retainLines: true,
   })
   if (!transform) throw Error('cannot parse code')
   return transform.code

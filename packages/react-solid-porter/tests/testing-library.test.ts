@@ -22,9 +22,8 @@ describe('import `@testing-library/react`', () => {
 
 describe('API difference `@testing-library/react`', () => {
   test('render', () => {
-    const code = `import { render } from "@testing-library/react"; render(<Component />);`
-    const expectedCode = `import { render } from "@solidjs/testing-library";
-render(() => <Component />);`
+    const code = `import { render } from "@testing-library/react";render(<Component />);`
+    const expectedCode = `import { render } from "@solidjs/testing-library";render(() => <Component />);`
     const newCode = portReactToSolid(code)
     expect(newCode).toBe(expectedCode)
   })
