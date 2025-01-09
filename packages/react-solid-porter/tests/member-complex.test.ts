@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { portReactToSolid } from '../src'
 import { memberIndentifiers } from '../src/memberIdentifiers'
+import { tsTypeReferences } from '../src/tsTypeReferences'
 
 describe('member complex', () => {
   test.each(Array.from(memberIndentifiers.entries()))(
@@ -16,7 +17,7 @@ Solid.${newMember};`
 })
 
 describe('member type complex', () => {
-  test.each(Array.from(memberIndentifiers.entries()))(
+  test.each(Array.from(tsTypeReferences.entries()))(
     `replace member: %s => %s`,
     (oldMember, newMember) => {
       const code = `import * as React from "react"; let a: React.${oldMember};`

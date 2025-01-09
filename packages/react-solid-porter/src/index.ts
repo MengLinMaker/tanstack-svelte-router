@@ -1,5 +1,6 @@
 import { transformSync } from '@babel/core'
 import { memberIndentifiers } from './memberIdentifiers'
+import { tsTypeReferences } from './tsTypeReferences'
 import type Babel from '@babel/core'
 
 // TODO: port code
@@ -43,10 +44,11 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
               state.importSpecifierReact.add(specifier.local.name)
             }
           }
-        } else if (
-          t.isStringLiteral(path.node.source, {
-            value: '@testing-library/react',
-          })
+          return
+        }
+
+        if (
+          t.isStringLiteral(path.node.source, { value: '@testing-library/react' })
         ) {
           // import ... "@testing-library/react"
           // import ... "@solidjs/testing-library"
@@ -65,6 +67,7 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
               state.importSpecifierTestingLibrary.add(specifier.local.name)
             }
           }
+          return
         }
       },
 
@@ -85,7 +88,7 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
           else {
             const loc = path.node.property.loc
             console.warn(
-              `Member ported via hacky workaround: ${loc?.start.line}:${loc?.start.column} ${loc?.identifierName}`,
+              `Member hacky port: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
             )
           }
         }
@@ -95,33 +98,48 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
         // RefObject<T>
         // T
         if (path.getSource().slice(0, 15) === 'React.RefObject') {
+          return path.replaceWith(path.node.typeParameters!.params[0]!)
+        }
+
+        // React.ForwardedRef<T>
+        // T
+        if (path.getSource().slice(0, 18) === 'React.ForwardedRef') {
           path.replaceWith(path.node.typeParameters!.params[0]!)
+          return
         }
 
         // type: React.JSX.Element
         // type: Solid.JSX.Element
-        const splitType = path.getSource().split('.')
-        if (splitType[0] === state.importNamespaceReact) {
-          const member = splitType.slice(1, splitType.length).join('.')
-          if (memberIndentifiers.get(member)) {
-            const newSplitType = memberIndentifiers.get(member)!.split('.')
-            let currentNode:
-              | Babel.types.TSQualifiedName
-              | Babel.types.Identifier = t.identifier('Solid')
-            for (;;) {
-              const identifierName = newSplitType.shift()
-              if (!identifierName) break
-              currentNode = t.tsQualifiedName(
-                currentNode,
-                t.identifier(identifierName),
+        if (
+          state.importNamespaceReact &&
+          path.getSource().includes(`${state.importNamespaceReact}.`)
+        ) {
+          // Get all tokens before <T>
+          const splitType = path.getSource().split('.').map((item) => item.replace(/<.*>/, ''))
+
+          if (splitType[0] === state.importNamespaceReact) {
+            const member = splitType.slice(1, splitType.length).join('.')
+            if (tsTypeReferences.get(member)) {
+              // Recoursively replace constructs new member
+              const newSplitType = tsTypeReferences.get(member)!.split('.')
+              let currentNode:
+                | Babel.types.TSQualifiedName
+                | Babel.types.Identifier = t.identifier('Solid')
+              for (; ;) {
+                const identifierName = newSplitType.shift()
+                if (!identifierName) break
+                currentNode = t.tsQualifiedName(
+                  currentNode,
+                  t.identifier(identifierName),
+                )
+              }
+              path.node.typeName = currentNode
+            } else {
+              const loc = path.node.loc
+              throw console.warn(
+                `TSTypeReference not ported: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
               )
             }
-            path.node.typeName = currentNode
-          } else {
-            const loc = path.node.loc
-            throw Error(
-              `Type member not ported: ${loc?.start.line}:${loc?.start.column} ${path.getSource()}`,
-            )
           }
         }
       },
@@ -181,9 +199,9 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
       },
 
       JSXElement: (path) => {
-        // <Fragment></Fragment>
+        // <React.Fragment></React.Fragment>
         // <></>
-        if (path.getSource().slice(1, 9) === 'Fragment') {
+        if (path.getSource().slice(1, 15) === 'React.Fragment') {
           path.replaceWith(
             t.jSXFragment(
               t.jSXOpeningFragment(),
@@ -191,6 +209,17 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
               path.node.children,
             ),
           )
+        }
+
+        // <React.Suspense></React.Suspense>
+        // <Solid.Suspense></Solid.Suspense>
+        if (path.getSource().slice(1, 15) === 'React.Suspense') {
+          const jsxMemberExpression = t.jsxMemberExpression(
+            t.jsxIdentifier('Solid'),
+            t.jsxIdentifier('Suspense'),
+          )
+          path.node.openingElement.name = jsxMemberExpression
+          path.node.closingElement!.name = jsxMemberExpression
         }
       },
     },
