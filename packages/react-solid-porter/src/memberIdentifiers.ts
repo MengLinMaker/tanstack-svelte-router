@@ -4,6 +4,9 @@ export const memberIndentifiers = new Map(
     createContext: 'createContext',
     useContext: 'useContext',
     Context: 'Context',
+    Suspense: 'Suspense',
+    Component: 'Component',
+    useTransition: 'useTransition',
 
     // Changed
     createElement: 'createComponent',
@@ -12,12 +15,6 @@ export const memberIndentifiers = new Map(
     useEffect: 'createEffect',
     ReactElement: 'Component',
     useMemo: 'createMemo',
-    PropsWithoutRef: 'ComponentProps',
-    HTMLAttributes: 'JSX.HTMLAttributes',
-    ComponentType: 'Component',
-    FC: 'Component',
-    Component: 'Component',
-    LazyExoticComponent: 'JSX.Component',
     memo: 'createMemo',
   }),
 )

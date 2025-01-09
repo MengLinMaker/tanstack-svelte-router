@@ -48,7 +48,9 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
         }
 
         if (
-          t.isStringLiteral(path.node.source, { value: '@testing-library/react' })
+          t.isStringLiteral(path.node.source, {
+            value: '@testing-library/react',
+          })
         ) {
           // import ... "@testing-library/react"
           // import ... "@solidjs/testing-library"
@@ -116,17 +118,23 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
           path.getSource().includes(`${state.importNamespaceReact}.`)
         ) {
           // Get all tokens before <T>
-          const splitType = path.getSource().split('.').map((item) => item.replace(/<.*>/, ''))
+          const splitType = path
+            .getSource()
+            .split('.')
+            .map((item) => item.replace(/<[^>]*>/, ''))
 
           if (splitType[0] === state.importNamespaceReact) {
-            const member = splitType.slice(1, splitType.length).join('.')
+            const member = splitType
+              .slice(1, splitType.length)
+              .join('.')
+              .replace(/<[^>]*>/, '')
             if (tsTypeReferences.get(member)) {
-              // Recoursively replace constructs new member
+              // Recursively replace constructs new member
               const newSplitType = tsTypeReferences.get(member)!.split('.')
               let currentNode:
                 | Babel.types.TSQualifiedName
                 | Babel.types.Identifier = t.identifier('Solid')
-              for (; ;) {
+              for (;;) {
                 const identifierName = newSplitType.shift()
                 if (!identifierName) break
                 currentNode = t.tsQualifiedName(
@@ -134,7 +142,7 @@ const plugin = ({ types: t }: typeof Babel): Babel.PluginObj<any> => {
                   t.identifier(identifierName),
                 )
               }
-              path.node.typeName = currentNode
+              path.get('typeName').replaceWith(currentNode)
             } else {
               const loc = path.node.loc
               path.traverse({
