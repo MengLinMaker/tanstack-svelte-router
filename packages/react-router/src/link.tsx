@@ -37,7 +37,6 @@ import type {
   Updater,
   WithoutEmpty,
 } from './core/utils'
-import type { ReactNode } from 'react'
 import type { IsRequiredParams } from './core/link'
 
 export type CleanPath<T extends string> = T extends `${infer L}//${infer R}`
@@ -989,7 +988,7 @@ export type LinkComponent<TComp> = <
 ) => React.ReactElement
 
 export function createLink<const TComp>(
-  Comp: Constrain<TComp, any, (props: CreateLinkProps) => ReactNode>,
+  Comp: Constrain<TComp, any, (props: CreateLinkProps) => React.ReactNode>,
 ): LinkComponent<TComp> {
   return React.forwardRef(function CreatedLink(props, ref) {
     return <Link {...(props as any)} _asChild={Comp} ref={ref} />
